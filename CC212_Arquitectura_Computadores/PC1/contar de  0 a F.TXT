@@ -1,0 +1,45 @@
+; Programa contador de 0 a 0fh. Se repite en forma indefinida 
+org 0000h
+repite:
+ mov R1,#16 
+ mov R0,#0
+loop: 
+ mov A,R0
+ lcall display
+ clr P3.4
+ clr P3.3
+ mov P1,A
+ inc R0 
+ djnz R1,loop 
+ sjmp repite
+display:
+ inc a
+ movc a,@a+pc
+ ret
+ db 0c0h
+ db 0f9h 
+ db 0a4h;
+ db 0b0h;
+ db 99h;
+ db 92h;
+ db 82h;
+ db 0f8h;
+ db 80h;
+ db 90h;
+ db 88h;
+ db 83h;
+ db 0c6h;
+ db 0a1h;
+ db 86h;
+ db 8eh;
+END 
+
+;Consigo el patron de bits a mover al Puerto P1 
+;Se selecciona el display a utilizar ;es el display de la derecha
+;Se repite el contador en forma indefinida
+;Subrutina que convierte el valor de A ;en un patron de bits para el display 
+;incremento el valor de A
+ ;muevo a A el valor de la dirección de memoria (pc+a) ret db
+;Código que muestra "0" en el display ;Código que muestra "1" en el display
+;"2" "3" "4" "5" "6" "7" "8" "9" "A" "b" "C" "d" "E" "F"
+;Contador de 0 a 0fh ;Valor inicial de la cuenta

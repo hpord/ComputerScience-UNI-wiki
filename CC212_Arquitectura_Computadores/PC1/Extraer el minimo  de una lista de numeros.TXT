@@ -1,0 +1,76 @@
+;1)
+
+sndchr 	 equ 148h
+display	 equ 11Bh
+	 org 8000h
+	 mov R4,#255	;hacer las veces de largest (hace de mínimo)
+	 mov R2,#0	;R2 hace de contador para recorrer el arreglo(índice)
+	 mov R5,#10	;contador que va decrementando (cantidad de números)
+lazo:
+	mov A,R2
+	clr C
+	lcall extraer_numero
+	mov 30h,A
+	subb A,R4 		;A<--A-R4, si A>R4, Carry(C)=0
+	jc cambio			; salte si hay carry(resta negativa) carry=1
+
+regresa:
+	inc R2
+	djnz R5,lazo			;decrementa y salto si R5 no es 0
+	sjmp mostrar			; salto corto (salta a la subrutina que indica)
+	
+cambio:
+	mov R4,30h
+	sjmp regresa
+	
+mostrar: 
+	mov A,R4
+	add A,#30h		;requerimiento de subrutina sndchr
+	lcall sndchr			; mostrar por pantalla
+	mov A,R4
+	lcall display
+	cpl A
+	mov P1,A
+	ljmp 2F0h			;bucle infinito
+	
+extraer_numero:
+	inc A
+	movc A,@A+PC
+	ret
+	db 133,142,50,175,32,7,60,3,92,2
+	end
+
+;segundo método
+
+display	equ 11Bh
+sndchr	equ 148h
+	
+	org 8000h
+	mov R4,#176 ; R4 minimo
+	mov R6,#10
+	mov R2,#0
+loop:
+	mov A,R2
+	lcall obtener_dato
+	mov R5,A	
+	subb A,R4	
+	jnc sigue
+	mov A,R5
+	mov R4,A
+sigue:
+	inc R2
+	djnz R6,loop
+	mov A,R4
+	add A,#30h
+	lcall sndchr
+	mov A,R4	
+	lcall display
+	cpl A
+	mov P1,A
+	ljmp 2F0h
+obtener_dato:
+	inc A
+	movc A,@A+PC; mover codigo
+	ret
+	db 133,142,50,175,32,7,60,3,92,2
+	end

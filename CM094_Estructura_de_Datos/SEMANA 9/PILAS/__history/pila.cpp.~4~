@@ -1,0 +1,261 @@
+# include <iostream>
+#include <vcl.h>
+#include <stdio.h>
+#include <string>
+typedef char TipoDato;
+const int TAMPILA=100;
+using namespace std;
+
+/*
+class Pila{
+	private:
+		int cima; //El índice del último elemento ingresado
+		TipoDato listaPila[TAMPILA];
+	public:
+		Pila(){
+			cima=-1; //condicion de pila vacía
+		}
+		void insertar(TipoDato);  //push
+		TipoDato quitar(); // pop
+		bool pilaVacia(); // verdadero si la pila esta vacia
+		bool pilaLlena();
+		void limpiarPila();
+		TipoDato cimaPila(); //elemento que esta en la cima
+		int mostrarCima(); //devuelve la cima
+		int tamanoPila();
+
+
+};
+
+void completarPila(Pila &pila){
+		TipoDato x;
+		int n;
+		cout<<"Cuantos elementos ingresará a la pila (max. 6):";
+		cin>>n;
+		cout<<"Digite el elemento y presione ENTER\n";
+		for (int i=0; i < n; i++) {
+			cout<<"cima pila: "<<pila.mostrarCima()<<" : "<<"Elemento cima "<<pila.cimaPila()<<endl;
+			cout<<"indice "<<i<<": ";
+			cin>>x;
+			pila.insertar(x);
+			//cout<<"cima pila: "<<pila.mostrarCima()<<" : "<<"Elemento cim "<<pila.cimaPila()<<endl;
+		}
+
+}
+
+void mostrarPila(Pila &pila){
+
+	TipoDato x;
+	cout<<"\nElementos retirados de la pila:\n";
+	while(!pila.pilaVacia()){
+		cout<<"cima pila: "<<pila.mostrarCima()<<" : "<<"Elemento cima "<<pila.cimaPila()<<endl;
+		x=pila.quitar();
+		cout<<x<<"  ";
+		//cout<<"cima pila: "<<pila.mostrarCima()<<" : "<<"Elemento cim "<<pila.cimaPila()<<endl;
+
+	}
+	cout<<"cima pila: "<<pila.mostrarCima()<<" : "<<"Elemento cima "<<pila.cimaPila()<<endl;
+
+
+}
+
+void Pila::insertar(TipoDato elemento){
+	if (pilaLlena()) {
+		cout<<"Desbordamiento (overflow :v).\n";
+	}else{
+		// incrementar puntero cima y copia elemento
+		cima++;
+		listaPila[cima]=elemento;
+	}
+
+}
+
+bool Pila::pilaLlena(){
+	return cima==TAMPILA;
+}
+
+bool Pila::pilaVacia(){
+	return cima==-1;
+}
+
+int Pila::mostrarCima(){
+	return cima;
+}
+
+TipoDato Pila::cimaPila(){
+	if(pilaVacia()){
+		cout<<"Pila vacia!!!\n";
+		return 0;
+	}else{
+		return listaPila[cima];
+	}
+
+}
+
+TipoDato Pila::quitar(){
+	TipoDato x;
+	if(pilaVacia()){
+		cout<<"Desbordamiento negativo\n";
+		return 0;
+
+	}else{
+		x=listaPila[cima];
+		cima--;
+		return x;
+	}
+}
+
+int Pila::tamanoPila(){
+	return TAMPILA;
+}
+
+void Pila::limpiarPila(){
+	cima=-1;
+}
+*/
+
+
+class Pila
+{
+	private:
+		int cima; //El indice del último elemento ingresado
+		TipoDato listaPila[TAMPILA];
+	public:
+	Pila()
+	{
+		cima=-1;//Condicion de pila vacia
+	}
+	void insertar(TipoDato);
+	TipoDato quitar();
+	bool pilaVacia(); //verdadero si la pila esta vacia
+	bool pilaLlena();
+	void limpiarPila();
+	TipoDato cimaPila(); //El elemento que esta en la cima
+	int mostrarCima(); //Devuelve la cima
+	int tamanoPila();
+};
+void Pila::insertar(TipoDato elemento)
+{
+	if(pilaLlena())
+	{
+		cout<<"Desbordamiento (overflow)\n";
+	}
+	else
+	{
+		cima++;
+		listaPila[cima]=elemento;
+	}
+}
+bool Pila::pilaLlena()
+{
+	return cima==TAMPILA-1;
+}
+bool Pila::pilaVacia()
+{
+	return cima==-1;
+}
+int Pila::mostrarCima()//Devuelve la cima (que coincide indice del array)
+{
+	return cima;
+}
+TipoDato Pila::cimaPila()// Devuelve el elemento en la cima
+{
+	if (pilaVacia())
+	{
+		cout<<"Desbordamiento negativo, No hay mas elementos\n";
+		return 0;
+	}
+	else
+		return listaPila[cima];
+}
+TipoDato Pila::quitar()
+{
+	TipoDato x;
+	if (pilaVacia())
+	{
+		cout<<"Desbordameinto negativo (underflow)\n";
+		return 0; //NULL
+	}
+	else
+	{
+		x=listaPila[cima];
+		cima--;
+		return x;
+	}
+}
+int Pila::tamanoPila()
+{
+	return TAMPILA;
+}
+void Pila::limpiarPila()
+{
+	cima=-1;
+}
+//////////////////////////
+void completarPila(Pila &pila)
+{
+	TipoDato x;
+	int n;
+	cout<<"Cuantos elementos ingresara a la pila (max. 6):";
+	cin>>n;
+	cout<<"Escriba el elemento y pulse Enter:\n";
+	for (int i=0;i<n;i++)
+	{
+		cout<<"Cima pila "<<pila.mostrarCima()<<" : " <<"Elemento cima "<<pila.cimaPila()<<endl;
+		cout<<"Indice "<<i<<" : ";
+		cin>>x;
+		pila.insertar(x);
+		//cout<<"Cima pila "<<pila.mostrarCima()<<" : " <<"Elemento cima "<<pila.cimaPila()<<endl;
+	}
+	cout<<"Cima pila "<<pila.mostrarCima()<<" : " <<"Elemento cima "<<pila.cimaPila()<<endl;
+}
+void mostrarPila(Pila &pila)
+{
+	TipoDato x;
+	cout<<"\nElementos retirados de la pila:\n";
+	while(!pila.pilaVacia())
+	{
+		cout<<"Cima pila "<<pila.mostrarCima()<<" : " <<"Elemento cima "<<pila.cimaPila()<<endl;
+		x=pila.quitar();
+		cout<<x<<"   ";
+	//cout<<"Cima pila "<<pila.mostrarCima()<<" : " <<"Elemento cima "<<pila.cimaPila()<<endl;
+	}
+	cout<<"Cima pila "<<pila.mostrarCima()<<" : " <<"Elemento cima "<<pila.cimaPila()<<endl;
+}
+int main(){
+
+
+	Pila pilaChar; //Crea la pila vacia
+	TipoDato ch; //Son los caracteres de la palabra
+	bool esPal; //Devuelve true si es palindromo
+	string palabra;
+	string palabraSE; //Es la palabra sin espacios
+	cout<<"Escriba una frase o palabra:\n";
+	getline(cin,palabra);
+	for (int i=0;i<palabra.length();i++)
+	{
+		ch=toupper(palabra[i]);
+		if (ch!=' ')
+		{
+			pilaChar.insertar(ch);
+			palabraSE+=ch;
+		}
+	}
+	//Comprobamos si es palindromo
+	esPal=true;
+	for (int i=0;esPal && !pilaChar.pilaVacia();i++)
+	{
+		ch=pilaChar.quitar();
+		esPal=(ch==palabraSE[i]);
+	}
+	if(esPal)
+		cout<<"La palabra SI es palindromo\n";
+	else
+		cout<<"La palabra NO es palindromo\n";
+
+
+
+	Sleep(150000);
+	return 0;
+}
+

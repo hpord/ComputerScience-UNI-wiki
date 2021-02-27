@@ -1,0 +1,521 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	C:\Users\alumno\Desktop\cuarto lab\p1_dirigido4.asm
+	Object File:	C:\Users\alumno\Desktop\cuarto lab\p1_dirigido4.hex
+	List File:	C:\Users\alumno\Desktop\cuarto lab\p1_dirigido4.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				;Hacer un programa que muestre Hola mundo!..... en la primera fila del display LCD y muestre Como le
+				s va ?. en la segunda fila. Todo este texto de ambas filas que lo envíe también al terminal. Sugeren
+				cia: Usar la subrutina “print” para el terminal.
+    2:
+    3:		N      8000	org 8000h
+    4:	  8000	12 80 69		lcall inicioLCD
+    5:				; localiza el cursor sobre la fila 1, posición 0 e imprime el mensaje en el LCD
+    6:	  8003			repite:
+    7:	  8003	74 01		 	mov a, #1 	; fila 1
+    8:	  8005	75 F0 00	 	mov b, #0 	; posición 0
+    9:	  8008	12 81 68	 	lcall placeCur4
+   10:	  800B	12 81 52	 	lcall prtLCD4 	; visualiza mensaje en la primera fila
+   11:	  800E	48 6F 6C 61	 	db "Hola mundo!.....",0
+	  8012	20 6D 75 6E
+	  8016	64 6F 21 2E
+	  801A	2E 2E 2E 2E
+	  801E	00
+   12:
+   13:	  801F	74 02		 	mov a, #2 	; fila 2
+   14:	  8021	75 F0 00	 	mov b, #0 	; posición 0
+   15:	  8024	12 81 68	 	lcall placeCur4
+   16:	  8027	12 81 52	 	lcall prtLCD4 	; muestra mensaje
+   17:	  802A	43 6F 6D 6F	 	db "Como les va?.",0
+	  802E	20 6C 65 73
+	  8032	20 76 61 3F
+	  8036	2E 00
+   18:	  8038	78 0C		 	mov R0,#offcur	; desaparece el cursor
+   19:	  803A	12 80 C6	 	lcall wrLCDcom4
+   20:	  803D	12 01 36	 	lcall print	;Envia al terminal
+   21:	  8040	48 6F 6C 61	 	db "Hola mundo!.....",0 ;visualiza mensaje
+	  8044	20 6D 75 6E
+	  8048	64 6F 21 2E
+	  804C	2E 2E 2E 2E
+	  8050	00
+   22:	  8051	12 01 36	 	lcall print
+   23:	  8054	0D 0A 43 6F	 	db 0dh,0ah,"Como les va?.",0dh,0ah,0
+	  8058	6D 6F 20 6C
+	  805C	65 73 20 76
+	  8060	61 3F 2E 0D
+	  8064	0A 00
+   24:	  8066	02 02 F0		ljmp 2F0h
+   25:				$INCLUDE(subrutinasLCD.inc)
+   26: 1	N      0090	LCD_DATA equ 90h ; Puerto P1
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   27: 1	N      0091	LCD_RS equ 91h ; p1.1 Register Select del LCD
+   28: 1	N      0092	LCD_RW equ 92h ; p1.2 Read/Write del LCD
+   29: 1	N      0093	LCD_E equ 93h ; p1.3 Enable del LCD
+   30: 1			; Instrucciones para el LCD
+   31: 1	N      0028	Config equ 28h ; Function Set: Tamaño del bus de datos(4 bits), número de líneas es 2 y tamaño del f
+       1			ont es 5x7
+   32: 1	N      0006	entryMode equ 6 ; Modo de Entrada: Incrementa el cursor, no desplaza display
+   33: 1			; instrucciones para el control del cursor
+   34: 1	N      000C	offCur equ 0Ch ; Apaga el cursor(lo desaparece)
+   35: 1	N      000E	lineCur equ 0Eh ; Cursor aparece como una línea
+   36: 1	N      000D	blinkCur equ 0Dh ; Hace parpadear el cursor
+   37: 1	N      000F	combnCur equ 0Fh ; Encender el Display, encender cursor y parpadea el caracter en la posición del cu
+       1			rsor
+   38: 1	N      0002	homeCur equ 02h ; Coloca el cursor en el extremo izquierdo de la primera fila
+   39: 1	N      0010	shLfCur equ 10h ; Desplaza al cursor a la izquierda
+   40: 1	N      0014	shRtCur equ 14h ; Desplaza al cursor a la derecha
+   41: 1			; instrucciones para el control del display
+   42: 1	N      0001	clrDsp equ 01h ; Limpia el display así como el contenido de la memoria
+   43: 1	N      000E	onDsp equ 0Eh ; Display On, muestra caracteres en el display
+   44: 1	N      000A	offDsp equ 0Ah ; Display Off, no limpia el contenido de la memoria
+   45: 1	N      0018	shLfDsp   equ  18h  ;Desplazamiento del display a la izquierda
+   46: 1	N      001C	shRtDsp   equ  1Ch  ;Desplazamiento del display a la derecha
+   47: 1			; ----------------------------------------------------
+   48: 1			; subrutinas del TMC51 Registros usados
+   49: 1			; ----------------------------------------------------
+   50: 1	N      0118	delay equ 118h ; a
+   51: 1	N      0136	print equ 136h ; a, dptr
+   52: 1			;-----------------------------------------------------
+   53: 1			;subrutina inicioLCD
+   54: 1  8069			inicioLCD:
+   55: 1  8069	12 81 14		lcall resetLCD4 ; power on reset
+   56: 1  806C	74 01			mov A,#1
+   57: 1  806E	12 01 18	 	lcall delay
+   58: 1  8071	12 80 7A		lcall initLCD4
+   59: 1  8074	74 01			mov A,#1
+   60: 1  8076	12 01 18	 	lcall delay
+   61: 1  8079	22		 	ret
+   62: 1			; ====================================================
+   63: 1			; subrutina initLCD4 - se usa para inicializar el LCD
+   64: 1			;
+   65: 1			; ----------------------------------------------------
+   66: 1  807A			initLCD4:
+   67: 1  807A	C2 91		 clr LCD_RS ; Pin Register Select del LCD
+   68: 1  807C	C2 92		 clr LCD_RW ; Pin Read/Write del LCD
+   69: 1  807E	C2 93		 clr LCD_E ; Pin Enable del LCD
+   70: 1  8080	78 28		 mov r0, #Config ; Function Set - data bits, lines, fonts
+   71: 1  8082	12 80 C6	 lcall wrLCDcom4
+   72: 1  8085	78 0E		 mov r0, #onDsp ; Enciende display
+   73: 1  8087	12 80 C6	 lcall wrLCDcom4
+   74: 1  808A	78 06		 mov r0, #entryMode ; set Entry Mode
+   75: 1  808C	12 80 C6	 lcall wrLCDcom4 ; increment cursor to right, no display shift
+   76: 1  808F	78 01		 mov r0, #clrDsp ; limpia display, cursor en home
+   77: 1  8091	12 80 C6	 lcall wrLCDcom4
+   78: 1  8094	22		 ret
+   79: 1
+   80: 1			; ====================================================
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+ Line  I  Addr  Code            Source
+
+   81: 1			; subrutina wrLCDdata4
+   82: 1			; escribe una palabra de datos al LCD
+   83: 1			; datos deben ser localizados en R0
+   84: 1			; ----------------------------------------------------
+   85: 1  8095			wrLCDdata4:
+   86: 1  8095	D2 91		 	setb LCD_RS ; selecciona envio de datos
+   87: 1  8097	C2 92		 	clr LCD_RW ; selecciona operación de escritura
+   88: 1  8099	C0 E0		 	push ACC ; salva el acumulador
+   89: 1  809B	E8		 	mov A, R0 ; pone byte de datos en el acumulador
+   90: 1  809C	A2 E7		 	mov C, ACC.7 ;
+   91: 1  809E	92 97		 	mov P1.7, C ;
+   92: 1  80A0	A2 E6		 	mov C, ACC.6 ;
+   93: 1  80A2	92 96		 	mov P1.6, C ;
+   94: 1  80A4	A2 E5		 	mov C, ACC.5 ;
+   95: 1  80A6	92 95		 	mov P1.5, C ;
+   96: 1  80A8	A2 E4		 	mov C, ACC.4 ;
+   97: 1  80AA	92 94		 	mov P1.4, C ;hasta aquí se envia el nibble mas significativo
+   98: 1  80AC	D2 93			setb LCD_E ;
+   99: 1  80AE	C2 93			clr LCD_E ;
+  100: 1  80B0	A2 E3			mov C, ACC.3 ;
+  101: 1  80B2	92 97			mov P1.7, C ;
+  102: 1  80B4	A2 E2			mov C, ACC.2 ;
+  103: 1  80B6	92 96			mov P1.6, C ;
+  104: 1  80B8	A2 E1			mov C, ACC.1 ;
+  105: 1  80BA	92 95			mov P1.5, C ;
+  106: 1  80BC	A2 E0			mov C, ACC.0 ;
+  107: 1  80BE	92 94			mov P1.4, C ;se envia el nibble menos significativo
+  108: 1  80C0	12 80 F7		lcall pulseEwait4 ; pulso en el pin Enable... y espera por el Flag Busy que se aclare
+  109: 1  80C3	D0 E0			pop ACC
+  110: 1  80C5	22			ret
+  111: 1			; ====================================================
+  112: 1			; subrutina wrLCDcom4
+  113: 1			; escribe una palabra comando al LCD
+  114: 1			; el comando debe ser localizado en r0
+  115: 1			; ----------------------------------------------------
+  116: 1  80C6			wrLCDcom4:
+  117: 1  80C6	C2 91		 	clr LCD_RS ; limpia RS - y eso indica que son instrucciones a escribir
+  118: 1  80C8	C2 92		 	clr LCD_RW ; selecciona operación de escritura
+  119: 1  80CA	C0 E0		 	push ACC
+  120: 1  80CC	E8		 	mov A,R0
+  121: 1  80CD	A2 E7			mov C, ACC.7 ;
+  122: 1  80CF	92 97			mov P1.7, C ;
+  123: 1  80D1	A2 E6			mov C, ACC.6 ;
+  124: 1  80D3	92 96			mov P1.6, C ;
+  125: 1  80D5	A2 E5			mov C, ACC.5 ;
+  126: 1  80D7	92 95			mov P1.5, C ;
+  127: 1  80D9	A2 E4			mov C, ACC.4 ;
+  128: 1  80DB	92 94			mov P1.4, C ;hasta aquí se envia el nibble mas significativo
+  129: 1			;---------------------------------------
+  130: 1  80DD	D2 93			setb LCD_E ;
+  131: 1  80DF	C2 93			clr LCD_E ;
+  132: 1  80E1	A2 E3			mov C, ACC.3 ;
+  133: 1  80E3	92 97			mov P1.7, C ;
+  134: 1  80E5	A2 E2			mov C, ACC.2 ;
+  135: 1  80E7	92 96			mov P1.6, C ;
+  136: 1  80E9	A2 E1			mov C, ACC.1 ;
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+ Line  I  Addr  Code            Source
+
+  137: 1  80EB	92 95			mov P1.5, C ;
+  138: 1  80ED	A2 E0			mov C, ACC.0 ;
+  139: 1  80EF	92 94			mov P1.4, C ;se envia el nibble menos significativo
+  140: 1			;---------------------------------------
+  141: 1  80F1	12 80 F7		lcall pulseEwait4 ; pulso en el pin Enable...
+  142: 1  80F4	D0 E0			pop ACC
+  143: 1  80F6	22			ret
+  144: 1			; ====================================================
+  145: 1			; subrutina pulseEwait4
+  146: 1			; genera un pulso positivo sobre el pin enable del LCD.
+  147: 1			; espera por el Flag Busy se aclare antes de retornar.
+  148: 1			; input : nada
+  149: 1			; output : nada
+  150: 1			; destroys : LCD_RW, LCD_RS, LCD_DATA
+  151: 1			; ----------------------------------------------------
+  152: 1  80F7			pulseEwait4:
+  153: 1  80F7	C2 93		 	clr LCD_E
+  154: 1  80F9	D2 93		 	setb LCD_E ; pulso en el pin Enable
+  155: 1  80FB	C2 93		 	clr LCD_E
+  156: 1  80FD	75 90 FF	 	mov LCD_DATA, #0ffh ; prepara el puerto para entrada
+  157: 1  8100	D2 92		 	setb LCD_RW ; prepara R/W para la operación de lectura
+  158: 1  8102	C0 E0		 	push ACC ; salva contenidos del acumulador
+  159: 1  8104			pEw:
+  160: 1  8104	D2 93		 	setb LCD_E ; inicia el pulso Enable
+  161: 1  8106	E5 90		 	mov A, LCD_DATA ; lee el nibble de estado
+  162: 1  8108	C2 93		 	clr LCD_E ; termina el pulso en Enable
+  163: 1  810A	D2 93		 	setb LCD_E ;
+  164: 1  810C	C2 93		 	clr LCD_E
+  165: 1  810E	20 E7 F3	 	jb ACC.7, pEw ; se hace el lazo mientras que Flag Busy es uno
+  166: 1  8111	D0 E0		 	pop ACC ; restaura acumulador
+  167: 1  8113	22		 	ret
+  168: 1			; ====================================================
+  169: 1			; subrutina resetLCD4 - reinicia el LCD
+  170: 1			; version en software de la operación
+  171: 1			; power on reset
+  172: 1			; ----------------------------------------------------
+  173: 1  8114			resetLCD4:
+  174: 1  8114	C2 91		 	clr LCD_RS ; Se pone a 0 el pin RS
+  175: 1  8116	C2 92		 	clr LCD_RW ; Se pone a 0 el pin Read / Write
+  176: 1  8118	C2 93		 	clr LCD_E ; Se pone a 0 el pin E
+  177: 1  811A	C2 97		 	clr P1.7 ; se fijan los bits para...
+  178: 1  811C	C2 96		 	clr P1.6 ; ... power-on-reset
+  179: 1  811E	D2 95		 	setb P1.5
+  180: 1  8120	D2 94		 	setb P1.4
+  181: 1			 	; paso 1
+  182: 1  8122	D2 93		 	setb LCD_E ; start Enable pulse
+  183: 1  8124	C2 93		 	clr LCD_E ; end Enable pulse
+  184: 1  8126	74 04		 	mov A, #4 ; retardo de 4 milisegundos
+  185: 1  8128	12 01 18	 	lcall delay
+  186: 1			 	; paso 2
+  187: 1  812B	D2 93		 	setb LCD_E ; start Enable pulse
+  188: 1  812D	C2 93		 	clr LCD_E ; end Enable pulse
+  189: 1  812F	74 01		 	mov A, #1 ; retardo de 1 milisegundo
+  190: 1  8131	12 01 18		lcall delay
+  191: 1			 	; paso 3
+  192: 1  8134	D2 93		 	setb LCD_E ; start Enable pulse
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+ Line  I  Addr  Code            Source
+
+  193: 1  8136	C2 93		 	clr LCD_E ; end Enable pulse
+  194: 1  8138	74 01		 	mov A, #1 ; retardo de 1 milisegundo
+  195: 1  813A	12 01 18	 	lcall delay
+  196: 1  813D	78 28		 	mov R0, #Config ; FUNCTION SET
+  197: 1  813F	12 80 C6	 	lcall wrLCDcom4
+  198: 1  8142	78 0A		 	mov R0, #offDsp ; display off
+  199: 1  8144	12 80 C6	 	lcall wrLCDcom4
+  200: 1  8147	78 01		 	mov R0, #clrDsp ; clear display, home cursor
+  201: 1  8149	12 80 C6	 	lcall wrLCDcom4
+  202: 1  814C	78 06		 	mov R0, #entryMode ; set ENTRY MODE
+  203: 1  814E	12 80 C6	 	lcall wrLCDcom4
+  204: 1  8151	22		 	ret
+  205: 1
+  206: 1			; ==========================================================
+  207: 1			; subrutina prtLCD4
+  208: 1			; toma la cadena inmediatamente que sigue a call y
+  209: 1			; lo muestra sobre el LCD. La cadena es leida con la
+  210: 1			; instrucción mov a, @a+dptr.
+  211: 1			; de este modo, la cadena se encuentra en memoria de datos.
+  212: 1			; la cadena debe ser terminada con un nulo (0).
+  213: 1			;
+  214: 1			; input : nada
+  215: 1			; output : nada
+  216: 1			; destroys : acc, dptr
+  217: 1			; ==========================================================
+  218: 1			;
+  219: 1  8152			prtLCD4:
+  220: 1  8152	D0 83		 pop dph ; pop retorna dirección en el dptr
+  221: 1  8154	D0 82		 pop dpl
+  222: 1  8156			prtNext:
+  223: 1  8156	E4		 clr a ; fija offset = 0
+  224: 1  8157	93		 movc a, @a+dptr ; get chr from code memory
+  225: 1  8158	B4 00 02	 cjne a, #0, chrOK ; if chr = 0 then return
+  226: 1  815B	80 08		 sjmp retPrtLCD
+  227: 1  815D			chrOK:
+  228: 1  815D	F8		 mov r0, a
+  229: 1  815E	12 80 95	 lcall wrLCDdata4 ; envia caracter
+  230: 1  8161	A3		 inc dptr ; apunta al siguiente caracter
+  231: 1  8162	02 81 56	 ljmp prtNext ; itera hasta el fin de la cadena
+  232: 1  8165			retPrtLCD:
+  233: 1  8165	74 01		 mov a, #1h ; apunta a la instrucción después de la cadena
+  234: 1  8167	73		 jmp @a+dptr ; return with a jump instruction
+  235: 1			; ==========================================================
+  236: 1			; subrutina placeCur4
+  237: 1			; esta rutina fija la posición del cursor. La posición del cursor
+  238: 1			; es localizado en el registro B. La posición del cursor empieza
+  239: 1			; en 0. El acumulador da el número de línea.
+  240: 1			; input : el acumulador indica el número de línea (1, 2)
+  241: 1			; : el registro B contiene la posición del cursor
+  242: 1			; output : nada
+  243: 1			; ==========================================================
+  244: 1			;
+  245: 1  8168			placeCur4:
+  246: 1  8168	15 E0		 	dec acc ; acc=0 for line=1
+  247: 1  816A	70 06		 	jnz line2 ; if acc=0 then first line
+  248: 1  816C	E5 F0		 	mov a, b
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 6
+
+
+
+ Line  I  Addr  Code            Source
+
+  249: 1  816E	24 80		 	add a, #080h ; construct control word for line 1
+  250: 1  8170	80 04		 	sjmp setcur
+  251: 1  8172			line2:
+  252: 1  8172	E5 F0		 	mov a, b
+  253: 1  8174	24 C0		 	add a, #0C0h ; construct control word for line 2
+  254: 1  8176			setcur:
+  255: 1  8176	F8		 	mov r0, a ; place control word
+  256: 1  8177	12 80 C6	 	lcall wrLCDcom4 ; issue command
+  257: 1  817A	22		 	ret
+  258: 1
+  259: 1			 ; ==========================================================
+  260: 1			; subrutina dspShLf4
+  261: 1			; Esta rutina traslada los contenidos del LCD a la izquierda. El
+  262: 1			; numero de caracteres a ser trasladados es localizado en el
+  263: 1			; acumulador.
+  264: 1			; entrada  : acumulador indica el numero de caracteres a trasladar
+  265: 1			; salida   : nada
+  266: 1			; ==========================================================
+  267: 1			;
+  268: 1  817B			dspShLf4:
+  269: 1  817B	60 07		         jz    ret_sdl
+  270: 1  817D	78 18		         mov   r0, #shLfDsp ; palabra de control para trasladar a la
+  271: 1			                            ; izquierda
+  272: 1  817F	11 C6		         acall wrLCDcom4
+  273: 1  8181	14		         dec   a
+  274: 1  8182	80 F7		         sjmp  dspShLf4
+  275: 1  8184	22		ret_sdl: ret
+  276: 1
+  277: 1			; ==========================================================
+  278: 1			; subrutina dspShRt4
+  279: 1			; Esta rutina traslada los contenidos del LCD a la derecha. El
+  280: 1			; numero de caracteres a ser trasladados es localizado en el
+  281: 1			; acumulador.
+  282: 1			; entrada  : acumulador indica el numero de caracteres a trasladar
+  283: 1			; salida   : nada
+  284: 1			; ==========================================================
+  285: 1			;
+  286: 1  8185			dspShRt4:
+  287: 1  8185	60 07		         jz    ret_sdr
+  288: 1  8187	78 1C		         mov   r0, #shRtDsp ; palabra de control para trasladar a
+  289: 1			                            ; la derecha
+  290: 1  8189	11 C6		         acall wrLCDcom4
+  291: 1  818B	14		         dec   a
+  292: 1  818C	80 F7		         sjmp  dspShRt4
+  293: 1  818E	22		ret_sdr: ret
+  294:					end
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 7
+
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 8
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+BLINKCUR			  NUMBER    000D	  36
+CHROK				  CODE	    815D	 227
+CLRDSP				  NUMBER    0001	  42
+COMBNCUR			  NUMBER    000F	  37
+CONFIG				  NUMBER    0028	  31
+CY				  BIT	      D7
+DELAY				  NUMBER    0118	  50
+DPH				  DATA	      83
+DPL				  DATA	      82
+DSPSHLF4			  CODE	    817B	 268
+DSPSHRT4			  CODE	    8185	 286
+EA				  BIT	      AF
+ENTRYMODE			  NUMBER    0006	  32
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+HOMECUR				  NUMBER    0002	  38
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INICIOLCD			  CODE	    8069	  54
+INITLCD4			  CODE	    807A	  66
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LCD_DATA			  NUMBER    0090	  26
+LCD_E				  NUMBER    0093	  29
+LCD_RS				  NUMBER    0091	  27
+LCD_RW				  NUMBER    0092	  28
+LINE2				  CODE	    8172	 251
+LINECUR				  NUMBER    000E	  35
+OFFCUR				  NUMBER    000C	  34
+OFFDSP				  NUMBER    000A	  44
+ONDSP				  NUMBER    000E	  43
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 9
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PEW				  CODE	    8104	 159
+PLACECUR4			  CODE	    8168	 245
+PRINT				  NUMBER    0136	  51
+PRTLCD4				  CODE	    8152	 219
+PRTNEXT				  CODE	    8156	 222
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PULSEEWAIT4			  CODE	    80F7	 152
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+REPITE				  CODE	    8003	   6
+RESET				  CODE	    0000
+RESETLCD4			  CODE	    8114	 173
+RETPRTLCD			  CODE	    8165	 232
+RET_SDL				  CODE	    8184	 275
+RET_SDR				  CODE	    818E	 293
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SETCUR				  CODE	    8176	 254
+SHLFCUR				  NUMBER    0010	  39
+SHLFDSP				  NUMBER    0018	  45
+SHRTCUR				  NUMBER    0014	  40
+SHRTDSP				  NUMBER    001C	  46
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+
+ASEM-51 V1.3                                        Copyright (c) 2002 by W.W. Heinz                                         PAGE 10
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+TXD				  BIT	      B1
+WR				  BIT	      B6
+WRLCDCOM4			  CODE	    80C6	 116
+WRLCDDATA4			  CODE	    8095	  85

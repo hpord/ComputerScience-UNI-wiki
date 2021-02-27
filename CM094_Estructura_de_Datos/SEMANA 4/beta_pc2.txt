@@ -1,0 +1,93 @@
+cdiazd@uni.edu.pe
+
+int pasadas=0;
+
+	//Obtenemos la cantidad de digitos (pasadas) de el mayor elemento de nuestro arreglo
+	for (int i = 0, temporal; i < n; i++) {
+		 temporal = log10(a[i]) + 1;     //Obtenemos la cantidad de digitos de un número
+		 if (temporal>pasadas) {
+			pasadas=temporal;
+		 }
+	}
+
+	for (int i = 0; i < pasadas; i++) {
+		int indices[10] {}, contador[10][25] {} ; //Inicializamos los arreglos a cero
+
+		for (int j=0, posicion, longitud; j < n; j++) {
+			string s = to_string(a[j]);
+			longitud = s.length();
+			posicion = longitud - i;     // posición del cursor en un numero (de derecha a izquierda)
+			if (posicion>0) {
+			  contador[int(s[posicion])][indices[int(s[posicion])]] = a[j];
+			  ShowMessage(indices[int(s[posicion])]);
+			  indices[int(s[posicion])]+=1;
+
+
+			}else{
+				//lo movemos el elemento actual a la posicion 0 de la matriz
+				contador[0][indices[0]] = a[j];
+				indices[0]+=1;
+			}
+
+		}
+
+		//for (int k = 0, bandera=0; k < 10; k++) {
+		//   if(indices[k]!=0){
+		//	  for (int ind=0; ind < indices[k]; ind++) {
+		//		   intercambiar(a[ind+bandera], contador[k][ind]);
+		//	  }
+		//	  bandera+=indices[k];
+		//   }
+		//}
+		//for (int m=0; m < n; m++) {
+		//  ShowMessage(a[m]);
+		//}
+
+
+	}
+
+
+void ordRadix(int a[], int n){
+
+	//Vec.resize(10);
+	int indices[10] {}, contador[10][25] {} ;
+	int temp , m=0;
+
+	int pasadas=0;
+
+	//Obtenemos la cantidad de digitos (pasadas) de el mayor elemento de nuestro arreglo
+	for (int i = 0, temporal; i < n; i++) {
+		 temporal = log10(a[i]) + 1;     //Obtenemos la cantidad de digitos de un número
+		 if (temporal>pasadas) {
+			pasadas=temporal;
+		 }
+	}
+
+
+	for(int i=0;i<pasadas;i++){
+		int indices[10] {}, contador[10][25] {} ; //Inicializamos los arreglos a cero
+
+		for(int j=0;j<n;j++){
+			  temp= (int)(a[j]/pow(10,i))%10;
+			  //Vec[temp].push_back(a[j]);
+			  contador[temp][indices[temp]] = a[j];
+			  indices[temp]+=1;
+		}
+
+	   for(int k=0;k<10;k++)
+	   {
+			//for(int l=0;l<Vec[k].size();l++){
+		 if(indices[k]!=0){
+			for(int l=0;l<indices[k];l++){
+				//a[m]=Vec[k][l];
+				intercambiar(a[m], contador[k][l]);
+				m++;
+
+			}
+			//Vec[k].clear();
+		 }
+	   }
+
+		m=0;
+	}
+}

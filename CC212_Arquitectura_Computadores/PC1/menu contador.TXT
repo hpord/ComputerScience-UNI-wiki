@@ -1,0 +1,148 @@
+print equ 136h
+getchr equ 121h
+display equ 11Bh
+sndchr equ 148h
+org 8000h
+mov TMOD,#21h
+menu:
+lcall print
+db 0dh,0ah,"CONTADOR",0dh,0ah
+db 0dh,0ah,"a)Contador Creciente",0dh,0ah
+db 0dh,0ah,"b)Contador Decreciente",0dh,0ah
+db 0dh,0ah,"c)Salir",0dh,0ah
+db 0dh,0ah,"Ingrese Seleccion: ",0ah,0
+lcall getchr
+cjne A,#'a',otraOpcion
+sjmp creciente
+otraOpcion:
+cjne A,#'b',salir
+Ajmp decreciente
+salir:
+ljmp 2F0h
+creciente:
+mov A,#0dh
+lcall sndchr
+mov A,#0Ah
+lcall sndchr
+Otra_vez:
+mov R2,#0
+mov R3,#13
+lazo1:
+mov A,R2
+lcall display
+cpl A
+mov P1,A
+mov A,R2
+subb A,#10
+jnc otra_cantidad
+mov A,R2
+add A,#30h
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto
+otra_cantidad:
+mov A,R2
+cjne A,#10,otro
+mov A,#41h
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto
+otro:
+mov A,R2
+cjne A,#11,otro2
+mov A,#'b'
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto
+otro2:
+mov A,R2
+cjne A,#12,salto
+mov A,#'C'
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+salto:
+jnb P3.2,MENU_
+lcall medio_segundo
+jnb P3.2,MENU_
+inc R2
+djnz R3,lazo
+Ajmp otra_vez
+lazo:
+ajmp lazo1
+MENU_:
+Ajmp menu
+decreciente:
+mov A,#0dh
+lcall sndchr
+mov A,#0Ah
+lcall sndchr
+otra_vez2:
+mov R2,#12
+mov R3,#13
+lazo1_:
+mov A,R2
+lcall display
+cpl A
+mov P1,A
+mov A,R2
+otro2_:
+cjne A,#13,otro3_
+mov A,#'d'
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto_
+otro3_:
+cjne A,#12,otro4_
+mov A,#'C'
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto_
+otro4_:
+cjne A,#11,otro5_
+mov A,#'b'
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto_
+otro5_:
+cjne A,#10,otra_cantidad_
+mov A,#'A'
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+sjmp salto_
+otra_cantidad_:
+mov A,R2
+add A,#30h
+lcall sndchr
+mov A,#0dh
+lcall sndchr
+salto_:
+jnb P3.2,MENU__
+lcall medio_segundo
+jnb P3.2,MENU__
+dec R2
+djnz R3,lazo_
+Ajmp otra_vez2
+lazo_:
+ajmp lazo1_
+MENU__:
+ajmp menu
+medio_segundo:
+setb TR0
+mov R7,#7
+espera:
+jnb TF0,espera
+clr TF0
+jnb P3.2,fuera
+djnz R7,espera
+fuera:
+clr TR0
+ret
+end

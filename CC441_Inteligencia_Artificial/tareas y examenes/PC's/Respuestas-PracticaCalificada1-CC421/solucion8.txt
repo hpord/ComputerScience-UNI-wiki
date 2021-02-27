@@ -1,0 +1,11 @@
+formulas.append(And(
+        Forall('$x', Exists('$y', And(Successor('$x', '$y'), Not(Equals('$x', '$y'))))),
+        Forall('$x', Forall('$y', Forall('$z', Implies(And(Successor('$x', '$y'), Successor('$x', '$z')), Equals('$y', '$z')))))
+    ))
+    formulas.append(Forall('$x', And(
+        Or(Even('$x'), Odd('$x')), Not(And(Even('$x'), Odd('$x')))
+    )))
+    formulas.append(Forall('$x', Forall('$y', Implies(And(Even('$x'), Successor('$x', '$y')), Odd('$y')))))
+    formulas.append(Forall('$x', Forall('$y', Implies(And(Odd('$x'), Successor('$x', '$y')), Even('$y')))))
+    formulas.append(Forall('$x', Forall('$y', Implies(Successor('$x', '$y'), Larger('$y', '$x')))))
+    formulas.append(Forall('$x', Forall('$y', Forall('$z', Implies(And(Larger('$x', '$y'), Larger('$y', '$z')), Larger('$x', '$z'))))))

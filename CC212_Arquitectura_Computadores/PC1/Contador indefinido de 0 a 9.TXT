@@ -1,0 +1,23 @@
+sdelay  equ 142h
+display equ 11Bh
+prthex  equ 13Fh
+sndchr  equ 148h
+	org 8000h
+repite:
+	mov R5,#10
+	mov R7,#0
+lazo:
+	mov A,R7
+	mov 40h,A
+	lcall prthex
+	mov A,#0dh
+	lcall sndchr
+	mov A,40h
+	lcall display
+	cpl A
+	mov P1,A
+	lcall sdelay
+	inc R7         ; incrementa R7 que luego es pasado a A lineas arriba
+	djnz R5,lazo   ; cuando R5 es diferente de 0 se pasa a lazo y se repiendo con R5 decreciendo
+	sjmp repite
+	end	

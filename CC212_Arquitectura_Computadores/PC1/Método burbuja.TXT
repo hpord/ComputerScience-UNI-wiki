@@ -1,0 +1,90 @@
+;Programa que hace el ordenamiento usando
+;el algoritmo de burbuja
+;Listado de números desde 30h hasta 3fh
+
+org 0000h
+  lcall llena_memoria
+  mov R6,#16	;R6 es contador que hace las veces de "X" en el algoritmo
+
+loop1:
+  mov R0,#3Fh	;Empiezo en la dirección 3Fh con el ordenamiento
+  mov R5,#16	;R5 es el que hace las veces de "Z"
+
+loop:
+  mov A,@R0	;Se mueve a A el contenido de 3Fh
+  mov R3,A	;Se mueve a R3 el valor de A
+  dec R0	;Se decrementa R0 para poder cargar otro dato
+  mov A,@R0	;Se mueve a A este dato para poder hacer la substracción
+  subb A,R3	;Se calcula "A-R3" y si es negativo no hay intercambio entre datos
+  jc nohayint	;Va a "nohayint" si es negativo
+  mov A,@R0	;Empieza el intercambio, muevo a A el valor
+  mov R2,A	;Luego lo muevo a R2
+  mov A,R3	;Muevo a A el valor de R3
+  mov @R0,A	;Lo muevo a la dirección contenida en R0 el valor de R3
+  inc R0
+  mov A,R2	;muevo el valor de R2 a A
+  mov @R0,A	;y ahora lo muevo a la dirección siguiente de R0
+                ;Termina el intercambio
+  dec R0	;Decremento R0 para continuar con los siguientes datos
+
+	nohayint:		
+	djnz R5,loop	;decrementa R5 y va a loop si no es cero	
+	djnz R6,loop1	;decrementa R6 y va a loop1 si no es cero	
+	Fin:		
+	lcall mensaje		
+	sjmp Fin		
+
+
+;Muestra en el display la letra "o" si la lista está ordenada
+mensaje:
+   mov A,#0
+   lcall valores
+   clr P3.4
+   clr P3.3
+   mov P1,A
+   ret
+
+;Subrutina para llenar la memoria de datos desde 30h hasta 3Fh 
+llena_memoria:
+  mov R0,#0
+  mov R1,#30h
+  mov R2,#16
+
+loop2:
+  mov A,R0
+  lcall consigue_numero
+  mov @R1,A
+  inc R0
+  inc R1
+  djnz R2,loop2
+  ret
+
+consigue_numero:
+  inc A
+  movc A,@A+PC
+  ret
+  db 0AAh;
+  db 2Bh;
+  db 7Fh;
+  db 19h;
+  db 88h;
+  db 08h;
+  db 1Dh;
+  db 77h;
+  db 55h;
+  db 33h;
+  db 9Fh;
+  db 0CCh;
+  db 0DEh;
+  db 44h;
+  db 0B0h;
+  db 33h;
+
+;Patrones de bits de la letra "o"
+
+valores:
+  inc A
+  movc A,@A+PC
+  ret
+  db 0A3h; "o"
+  END

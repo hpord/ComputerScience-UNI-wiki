@@ -1,0 +1,53 @@
+;Programa que suma un conjunto de 13 números de un listado 
+;que empieza en la dirección de memoria 30h y termina en 3Ch. 
+;El resultado lo guarda en 50h. 
+ org 0000h 
+ lcall llena_memoria ;Llena la memoria de 30h a 3Ch con números
+ mov A,#0   ;Valor inicial del resultado de la suma, hace las veces de "sum" 
+ mov R6,#13  ;R6 hace las veces de "N"
+ mov R0,#30h  ;R0 se carga con la dirección inicial de memoria
+loop:
+  add A,@R0 ;Sumo los números del valor de "A" y el valor de la dirección de memoria
+  inc R0    ;Incremento R0 para pasar a la siguiente dirección
+  djnz R6,loop ;Decremento R6
+  mov 50h,A
+Fin:
+  sjmp Fin
+
+;Subrutina que llena la memoria con números 
+llena_memoria:
+  mov R1,#30h
+  mov R6,#13
+  mov R5,#0
+loop1:
+ mov A,R5
+ lcall consigue_numero 
+ mov @R1,A
+ inc R1
+ inc R5
+ djnz R6,loop1
+ ret
+
+;Subrutina que consigue el número a colocar en la memoria 
+
+consigue_numero:
+ inc A 
+ movc A,@A+PC
+ ret 
+ db 01h
+ db 02h
+ db 07h
+ db 08h
+ db 09h
+ db 0Ah
+ db 0Bh
+ db 0Fh
+ db 10h
+ db 11h
+ db 15h
+ db 63h
+ db 13h
+ END 
+
+
+

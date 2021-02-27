@@ -1,0 +1,21 @@
+Arquitecturas:
+Risc: MSP43062553
+Usa un conjunto de intrucciones básicas.
+	Desventaja: menos instrucciones. (MSP43062553 27 Instrucciones)
+	Ventaja: Más rápida
+
+Cisc: 8051
+Usa un conjunto de instrucciones más elavoradas (complejas).
+	Ventajas: más instrucciones para programar. (8051 135 instrucciones)
+	Desventaja: Más lento
+--------------------------------------------------
+Arq. Von Neumann (MSP43062553):	La misma memoria sirve para datos y códigos.
+
+
+Arq. Harvard (8051):		La memoria de códigos están separados.
+
+
+
+
+2,199923
+1,85973

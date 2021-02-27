@@ -1,0 +1,137 @@
+;Programa de ordenamiento por selección de un
+;listado desordenado de 16 números que se encuentran en las direcciones de 30h a 3Fh 
+;Muestra el display la letra "d" cuando termina de llenar
+;la lista "desordenada" y luego muestra la "o" cuando lo termina de ordenar.
+
+org 0000h
+  lcall limpia_memoria	;Limpia la memoria desde 30h a 3Fh
+  lcall llena_memoria	;Se llena la memoria con una lista de números desordenados
+  mov R0,#30h	;Dirección inicial para hacer el intercambio de datos
+  mov R4,#30h	;Dirección inicial que se usa para encontrar el menor valor
+  mov R5,#16	;Contador usado para hacer el intercambio de datos
+ 
+ mov R6,#16	;Contador que se usa para encontrar el menor valor
+
+loop1:
+ 
+ lcall menor_pos	;Calcula el menor número y la posición dentro de la lista
+ mov 52h,@R0	;Se guarda el valor a intercambiar
+ mov @R0,50h	;Se guarda el valor menor
+ mov 53h,R0	;La dirección en R0 se salva en 53h
+ mov A,51h	;La posicion del número se mueve a "A"
+ add A,R0	;Se suma la dirección en R0 con la posición en "A"
+ mov R0,A	;La nueva dirección en "A" se mueve a "R0"
+ mov @R0,52h	;Se mueve el valor de 52h a la nueva dirección
+ mov R0,53h	;Regreso el valor anterior a R0
+ inc R0	;Siguiente dirección de memoria
+ inc R4	;Siguiente dirección de memoria a buscar el menor valor
+ dec R6	;Se reduce el número de elementos desordenados
+ djnz R5,loop1
+ 
+Fin:
+ mov R0,#1
+ lcall mensaje	;Muestra la letra "o" indicando un listado “ordenado”
+ sjmp Fin	;Termina el programa
+
+;Subrutina que encuentra el menor número y la posición que tiene 
+menor_pos:
+ mov A,R6	;Contador en la lista
+ mov R2,A
+ mov A,R4	;Dirección inicial
+ mov R1,A
+ mov R3,#255	;R3 guarda el menor número
+ mov R7,#0	;R7 guarda la posición
+ 
+loop:
+ mov A,@R1	;Muevo a "A" el valor de la dirección de memoria
+ subb A,R3;
+ jnc mayor	;El carry "C" es 1 si es negativo la operación "A - R3"
+ mov A,@R1	;El valor en @R1 es menor
+ mov R3,A	;Se guarda el valor menor en R3
+ mov 51h,R7	;La posición se guarda en 51h
+
+mayor:
+ inc R1
+ inc R7
+ djnz R2,loop
+ mov 50h,R3	;El menor número se guarda en 50h
+ret
+
+;Llena la memoria con números desordenados
+
+llena_memoria:
+   mov R0,#30h
+   mov R1,#16
+   mov R2,#0
+
+lazo:
+   mov A,R2
+   lcall obtiene_numero
+   mov @R0,A
+   inc R2
+   inc R0
+   djnz R1, lazo
+   mov R0,#0
+   lcall mensaje
+   ret
+
+;Limpia la memoria de 30h a 3fh colocando 0s.
+
+limpia_memoria:
+   mov R0,#30h
+   mov R1,#16
+lazo1:
+   mov @R0,#0
+   inc R0
+   djnz R1,lazo1
+   ret
+
+;Números a colocar en las posiciones de memoria
+
+obtiene_numero:
+   inc A
+   movc A,@A+PC
+   ret
+   db 0AAh;
+   db 2Bh;
+   db 7Fh;
+   db 19h;
+   db 88h;
+   db 08h;
+   db 1Dh;
+   db 77h;
+   db 55h;
+   db 33h;
+   db 9Fh;
+   db 0CCh;
+   db 0DEh;
+   db 44h;
+   db 0B0h;
+   db 33h
+
+;Muestra en el display la letra "d" o "o" según sea el caso
+
+mensaje:
+   mov A,#0
+   cjne R0,#0,muestra_o
+   sjmp muestra_d
+
+muestra_o:
+   mov A,R0
+
+muestra_d:
+   lcall valores
+   clr P3.4
+   clr P3.3
+   mov P1,A
+   ret
+
+;Patrones de bits de las letras "d" y "o"
+valores:    
+    inc A
+    movc A,@A+PC
+    ret
+    db 0A1h; "d"
+    db 0A3h; "o"
+    END
+

@@ -1,0 +1,35 @@
+; Programa contador decimal de 0 a 9 que se muestra en un display de 7 segmentos ánodo común.
+; Se repite en forma indefinida. 
+ org 0000h
+ repite:
+  mov R1,#10    ;Contador de 10
+  mov R0,#0     ;Número inicial a mostrar en el display 
+ loop:
+   mov A,R0 	;Muevo al registro A el contenido de R0
+   lcall display	;Consigo el patrón de bits a mostrar en el display 
+   clr P3.4  	;Se selecciona el display que se encuentra en 
+   clr P3.3	;la derecha
+   mov P1,A     ;Envío el patrón de bits del número al Puerto P1 
+   inc R0	;Siguiente número a mostrar
+   djnz R1,loop ;Decremento de R1 y salto a loop si R1 es distinto de cero 
+   sjmp repite	;Se repite indefinidamente
+
+;Subrutina que convierte el valor del registro A 
+;en un patron de bits que corresponde a un número que 
+;se muestra en el display 
+display:
+ inc a        ;incremento el valor de A
+ movc a,@a+pc ;muevo a A el valor del contenido de la dirección de memoria (pc+a)
+ ret 	      ;Retorno de la subrutina al programa principal ;
+ db 0c0h ;Con este código se muestra "0" en el display 
+ db 0f9h ;Con este código se muestra "1" en el display
+ db 0a4h ;
+ db 0b0h;
+ db 99h;
+ db 92h;
+ db 82h;
+ db 0f8h;
+ db 80h;
+ db 90h;
+END
+ 

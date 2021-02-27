@@ -1,0 +1,40 @@
+;Programa para hacer el llenado de 
+;la memoria a partir de la dirección de memoria 30h hasta 3Fh 
+; con los números : ;0AAh, 2Bh, 7Fh, 19h, 88h, 08h, 1Dh, 77h, 55h, 33h, 9Fh, 0CCh, 0DEh, 44h, 0B0h y 33h.
+
+org 0000h 
+ mov R0,#30h 
+ mov R4,#16 
+ mov R5,#0
+lazo:
+ mov A,R5 
+ lcall obtengo_valor
+ mov @R0,A
+ inc R5
+ inc R0
+ djnz R4,lazo
+Fin:
+ sjmp Fin
+;Subrutina para obtener el dato a llenar en la memoria 
+
+obtengo_valor: 
+ inc A 
+ movc A,@A+PC 
+ ret 
+ db 0AAh;
+ db 2Bh;
+ db 7Fh;
+ db 19h;
+ db 88h;
+ db 08h;
+ db 1Dh;
+ db 77h;
+ db 55h;
+ db 33h;
+ db 9Fh;
+ db 0CCh;
+ db 0DEh;
+ db 44h
+ db 0B0h;
+ db 33h;
+ END

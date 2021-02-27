@@ -1,0 +1,25 @@
+; Programa que desplaza 3 leds a lo largo de 8 bits en un sentido y otro. ;Esta acción se repite indefinidamente. 
+org 0000h
+repite:
+  mov R0,#5
+  mov A,#0F8h  
+OtraVez:
+  mov P1,A
+  lcall Retardo 
+  Rl A
+  djnz R0,OtraVez
+;empieza el otro sentido 
+  mov R0,#5 
+  mov A,#1Fh
+OtraVez2:
+  mov P1,A 
+  lcall Retardo 
+  RR A
+  djnz R0,OtraVez2 
+  sjmp repite
+Retardo:
+  mov R3,#80 
+loop:
+  djnz R3,loop 
+  ret 
+  END

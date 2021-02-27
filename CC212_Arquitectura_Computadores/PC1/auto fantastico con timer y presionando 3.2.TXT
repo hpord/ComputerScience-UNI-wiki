@@ -1,0 +1,39 @@
+;kx8192x(12/11.0592x10^6)s=(1/16)s --> k=7
+org 8000h
+mov TMOD,#20h
+repite:
+mov R0,#8 ;En R0 se tiene el contador
+mov A,#1
+OtraVez:
+mov P1,A ;envío al Puerto P1 el valor de A
+jnb P3.2,stop
+reinicia:
+lcall retardo
+rl A ;Se rota a la izquierda
+djnz R0,OtraVez ;Va a "OtraVez" y se repite mientras R0 no es cero
+mov R0,#8 ;De nuevo inicializo el contador para el otro sentido
+mov A,#80h ;Valor inicial del puerto en el otro sentido
+OtraVez2:
+mov P1,A
+jnb P3.2,stop1
+reinicia1:
+lcall retardo
+rr A ;Se rota a la derecha
+djnz R0,OtraVez2
+sjmp repite
+stop:
+jnb P3.3,reinicia
+sjmp stop
+stop1:
+jnb P3.3,reinicia1
+sjmp stop1
+retardo:
+setb TR0
+mov R7,#7
+sigue:
+jnb TF0,sigue
+clr TF0
+djnz R7,sigue
+clr TR0
+ret
+end

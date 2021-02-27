@@ -1,0 +1,14 @@
+NAIVE BAYES PARA TEXTO: https://sebastianraschka.com/Articles/2014_naive_bayes_1.html
+MODELOS DE GRAFOS PROBABILISTICOS PyMC3: https://towardsdatascience.com/introduction-to-pymc3-a-python-package-for-probabilistic-programming-5299278b428
+REDES NEURONALES 1: https://www.technologyreview.es/s/12820/el-aprendizaje-profundo-va-ser-capaz-de-hacer-cualquier-cosa?
+El paquete pgmpy: https://pgmpy.org/
+
+Minitorch: https://minitorch.github.io/
+
+The Illustrated Word2vec: https://jalammar.github.io/illustrated-word2vec/
+Unsupervised learning-The curious pupil https://deepmind.com/blog/article/unsupervised-learning
+
+Material de repaso: CS 221 ― Artificial Intelligence: https://stanford.edu/~shervine/teaching/cs-221/
+
+Markov Chains: https://setosa.io/ev/markov-chains/
+

@@ -1,0 +1,8 @@
+PASO A PASO:
+Valores y vectores propios: https://matrixcalc.org/es/vectors.html#eigenvectors%28%7B%7B3,-2,3%7D,%7B-2,1,2%7D,%7B3,2,1%7D%7D%29
+Eliminación gaussiana: https://matrix.reshish.com/es/gaussSolution.php
+Multiplicacion de matrices: https://mxncalc.com/es/multiplicaci%C3%B3n-de-matrices-calculadora
+Inversa: https://mxncalc.com/es/calculadora-de-matriz-inversa
+Factorización QR: https://mxncalc.com/es/factorizacion-qr-calculadora
+Factorización Cholesky: https://mxncalc.com/es/cholesky-factorizacion-calculadora
+Factorización QR con Householder : https://atozmath.com/MatrixEv.aspx?q=qrdecomphh

@@ -1,0 +1,15 @@
+day,outlook,temp,humidity,wind,juega
+D1,Soleado,Hot,High,Weak,No
+D2,Soleado,Hot,High,Strong,No
+D3,Overcast,Hot,High,Weak,Si
+D4,Rain,Mild,High,Weak,Si
+D5,Rain,Cool,Normal,Weak,Si
+D6,Rain,Cool,Normal,Strong,No
+D7,Overcast,Cool,Normal,Strong,Si
+D8,Soleado,Mild,High,Weak,No
+D9,Soleado,Cool,Normal,Weak,Si
+D10,Rain,Mild,Normal,Weak,Si
+D11,Soleado,Mild,Normal,Strong,Si
+D12,Overcast,Mild,High,Strong,Si
+D13,Overcast,Hot,Normal,Weak,Si
+D14,Rain,Mild,High,Strong,No

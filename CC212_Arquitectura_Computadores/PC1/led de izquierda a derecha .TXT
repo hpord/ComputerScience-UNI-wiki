@@ -1,0 +1,19 @@
+;Programa que desplaza un led encendido a lo ;
+largo de 8 bits y esta acción se repite indefinidamente. 
+  org 0000h
+repite: 
+  mov R0,#8 
+  mov A,#0FEh 
+OtraVez:
+  mov P1,A
+  lcall Retardo
+  rl A
+ djnz R0,OtraVez 
+ sjmp repite
+;subrutina de retardo de tiempo
+Retardo:
+ mov R3,#120 
+loop:
+ djnz R3,loop 
+ ret 
+ END

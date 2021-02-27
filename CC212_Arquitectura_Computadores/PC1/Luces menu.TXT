@@ -1,0 +1,135 @@
+print equ 136h
+getbyt equ 11Eh
+display equ 11Bh
+sndchr equ 148h
+org 8000h
+mov TMOD,#20h
+menu:
+ lcall print
+ db 0dh,0ah,"Juego de Luces",0dh,0ah
+ db 0dh,0ah,"01)Auto Fantastico",0dh,0ah
+ db 0dh,0ah,"02)Cortina",0dh,0ah
+ db 0dh,0ah,"03)Barra de Progreso",0dh,0ah
+ db 0dh,0ah,"04)Salir",0dh,0ah
+ db 0dh,0ah,"Ingrese Seleccion: ",0ah,0
+ lcall getbyt
+ cjne A,#1,otraOpcion
+ ajmp auto_fantastico
+otraOpcion:
+ cjne A,#2,otraOpcion2
+ ajmp cortina
+otraOpcion2:
+ cjne A,#3,otraOpcion3
+ ajmp barraProg
+otraOpcion3:
+ cjne A,#4,termina
+ ljmp 2F0h
+termina:
+ lcall print
+ db 0dh,0ah,"La seleccion no es valida",0dh,0ah,0
+ ljmp menu
+auto_fantastico:
+ lcall autoFan
+ jnb P3.2,menu_
+ sjmp auto_fantastico
+menu_:
+ ajmp menu
+cortina:
+ lcall juego_cortina
+ jnb P3.2,menu_
+ sjmp cortina
+barraProg:
+ lcall barra_prog
+ jnb P3.2,menu_
+ sjmp barraProg
+autoFan:
+ mov R0,#8 ;En R0 se tiene el contador
+ mov A,#1
+OtraVez:
+ mov P1,A ;envío al Puerto P1 el valor de A
+ jnb P3.2,va_fuera
+ lcall retardo
+ jnb P3.2,va_fuera
+ rl A ;Se rota a la izquierda
+djnz R0,OtraVez ;Va a "OtraVez" y se repite mientras R0 no es cero
+mov R0,#8 ;De nuevo inicializo el contador para el otro sentido
+mov A,#80h ;Valor inicial del puerto en el otro sentido
+OtraVez2:
+mov P1,A
+jnb P3.2,va_fuera
+lcall retardo
+jnb P3.2,va_fuera
+rr A ;Se rota a la derecha
+djnz R0,OtraVez2
+va_fuera:
+ret
+retardo:
+setb TR0
+mov R7,#28
+wait_:
+jnb TF0,wait_
+clr TF0
+jnb P3.0,se_va
+djnz R7,wait_
+se_va:
+clr TR0
+ret
+juego_cortina:
+mov R1,#3
+mov R2,#10h ;R2•0001 0000
+mov R3,#8 ;R3•0000 1000
+mov A,R2 ;A •R2
+orl A,R3 ;A•R2 OR R3, entonces A=11h
+;cpl A
+mov P1,A ;P1•A, entonces P1=11100111
+lcall Retardo ;llamo a subrutina de retardo de tiempo
+jnb P3.2,va_fuera_
+loop: ;empieza un sentido de desplazamiento
+mov A,R2 ;A•0001 0000
+rl A ;A•0010 0000
+mov R2,A ;R2•0010 0000
+mov A,R3 ;R3•0000 1000
+rr A ;A•0000 0100
+mov R3,A ;R3•0000 0100
+orl A,R2 ;se juntan ambos nibbles(R2 y R3) para mandarlo al puerto P1
+ ;A•0000 0100 OR 0010 0000= 0010 0100
+;cpl A
+mov P1,A
+lcall Retardo
+jnb P3.2,va_fuera_
+djnz R1,loop ;así sucesivamente 2 veces más
+mov R1,#3
+loop2: ;empieza otro sentido de desplazamiento
+mov A,R2
+rr A
+mov R2,A
+mov A,R3
+rl A
+mov R3,A
+orl A,R2
+;cpl A
+mov P1,A
+lcall retardo
+jnb P3.2,va_fuera_
+djnz R1,loop2
+va_fuera_:
+ret
+barra_prog:
+mov R3,#8
+mov R2,#0
+lazo_:
+mov A,R2
+lcall trae_valor
+mov P1,A
+lcall retardo
+jnb P3.2,va_fuera__
+inc R2
+djnz R3,lazo_
+va_fuera__:
+ret
+trae_valor:
+inc A
+movc A,@A+PC
+ret
+db 1h,3h,7h,0Fh,1Fh,3Fh,7Fh,0FFh
+ END

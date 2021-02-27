@@ -1,0 +1,25 @@
+display equ 11Bh
+	org 8000h
+	mov A,#20
+	mov B,#4
+	div AB		;el cociente se guarda en A
+			;el resto se guarda en B
+	lcall display
+	cpl A
+	mov P1,A
+	ljmp 2F0h
+	end	
+
+//Para mostrar resultado en pantalla
+
+prthex  equ 13Fh
+	org 8000h
+	mov R6,#20
+	mov R7,#10
+	mov A,R6
+	mov B,R7
+	mul AB
+	mov 30h,A
+	lcall prthex  ; muestra lo que tiene el acumulador
+	ljmp 2F0h
+	end

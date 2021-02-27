@@ -1,0 +1,102 @@
+#include <vcl.h>
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+//La clase NodoCircular
+class NodoCircular
+{
+	private:
+	int dato;
+	NodoCircular* enlace; // Es el nodo que ira delante, el siguiente
+	public:
+	NodoCircular (int t)
+	{
+		dato = t;
+		enlace = this; // se apunta a sí mismo
+	}
+	int datoNodo() // devuelve el dato
+	{
+		return dato;
+	}
+	void fijarDato(int a) // fija el dato
+	{
+		dato=a;
+	}
+	NodoCircular* enlaceNodo() // devuelve nodo al que apunta
+	{
+		return enlace;
+	}
+	void ponerEnlace(NodoCircular* sgte)
+	{
+		enlace = sgte; // enlaza con el nodo sgte
+	}
+};
+//La clase ListaCircular
+class ListaCircular
+{
+	private:
+	NodoCircular* acceso;
+	public:
+	ListaCircular() // Constructor
+	{
+		acceso=0; // Al principio la lista esta vacia
+	}
+	void crearLista();
+	void visualizar();
+	void insertarAcceso(int);
+	void insertarDespues(int,int);
+	void insertarAntes(int,int);
+	void eliminar(int);
+	void modificar(int,int);
+};
+//Crear una lista circular
+void ListaCircular::crearLista()
+{
+	int x;
+	acceso=NULL; //Inicializa la lista
+	cout << "Termina con -1" << endl;
+	do
+	{
+		cin >> x;
+		if (x != -1)
+		{
+			insertarAcceso(x);
+		}
+	}while (x != -1);
+};
+
+//Inserta un dato
+void ListaCircular::insertarAcceso(int dato)
+{
+	NodoCircular* nuevo;
+	nuevo = new NodoCircular (dato);
+	if (acceso != 0 )
+	{
+		nuevo -> ponerEnlace(acceso -> enlaceNodo());
+		acceso -> ponerEnlace(nuevo); //Cierra el circulo
+	}
+	acceso = nuevo; //Ahora nuevo es el acceso
+};
+//Visualiza la lista
+void ListaCircular::visualizar()
+{
+	NodoCircular* indice;
+	if (acceso != 0)
+	{
+		indice = acceso -> enlaceNodo(); // siguiente nodo al de acceso
+		cout<<"DirDelDato"<<"\t"<<"Dato"<<"\t"<<"Siguiente"<<endl;
+		do {
+			cout <<indice<< "\t" <<indice->datoNodo()<<"\t"<<indice->enlaceNodo()<<endl;
+			indice = indice -> enlaceNodo();
+		}while(indice != acceso -> enlaceNodo());
+	}
+};
+int main(){
+	ListaCircular miLista;
+	miLista.crearLista();
+	miLista.visualizar();
+    Sleep(10000);
+	return 0;
+}
+

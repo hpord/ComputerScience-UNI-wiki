@@ -1,0 +1,11 @@
+Fecha,Fiesta,Desocupado,Actividad
+Urgente,Si,Si,Fiesta
+Urgente,No,Si,Estudio
+Near,Si,Si,Fiesta
+Ninguna,Si,No,Fiesta
+Ninguna,No,Si,Pub
+Ninguna,Si,No,Fiesta
+Near,No,No,Estudio
+Near,No,Si,TV
+Near,Si,Si,Fiesta
+Urgente,No,No,Estudio

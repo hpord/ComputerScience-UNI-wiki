@@ -1,0 +1,23 @@
+;18) Hacer parpadear un led conectado a P1.0 en caso se presiona el botón conectado
+;a P3.2. Si se presiona el botón conectado a P3.3 se detiene el parpadeo
+sdelay  equ 142h
+delay   equ 118h
+	org 8000h
+salir:	
+ 	 jnb P3.2,parpadeo		;testeo boton en P3.2
+ 	 sjmp salir
+parpadeo:
+	 jnb P3.3,salir
+	 lcall parpadeo_led
+	 jnb P3.3,salir			;testeo boton en P3.3
+ 	 sjmp parpadeo
+
+parpadeo_led:
+	 setb P1.0
+	 mov A,#100		;100 milisegundos
+	 lcall delay
+	 clr P1.0
+	 mov A,#100
+	 lcall delay
+	 ret
+	 end

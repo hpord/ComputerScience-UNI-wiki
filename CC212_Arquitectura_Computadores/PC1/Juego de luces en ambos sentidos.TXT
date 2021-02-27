@@ -1,0 +1,43 @@
+;Programa de juego de luces ;Se usan las instrucciones de rotación a la izquierda ;y rotación a la derecha ;R1 es el contador, es decir el número de veces que se repite el loop. ;Se utilizan R2 o R3 para envío de los números a mostrar en los leds.
+org 8000h 
+repite:
+ mov R1,#3 
+ mov R2,#10h 
+ mov R3,#8 
+ mov A,R2 
+ orl A,R3 
+ cpl A 
+ mov P1,A 
+ lcall retardo
+loop:
+ mov A,R2 
+ rl A
+ mov R2,A 
+ mov A,R3 
+ rr A 
+ mov R3,A 
+ orl A,R2
+ cpl A 
+ mov P1,A 
+ lcall retardo 
+ djnz R1,loop 
+ mov R1,#3
+loop2:
+ mov A,R2 
+ rr A
+ mov R2,A 
+ mov A,R3 
+ rl A 
+ mov R3,A 
+ orl A,R2 
+ cpl A 
+ mov P1,A 
+ lcall retardo 
+ djnz R1,loop2 
+ sjmp repite
+retardo: 
+ mov R0,#90
+lazo:
+ djnz R0,lazo 
+ ret 
+ END

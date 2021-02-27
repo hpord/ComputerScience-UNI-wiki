@@ -1,0 +1,50 @@
+ //Nodo Generico
+template <typename T> class Nodo
+{
+  private:
+	T dato;
+	Nodo <T>* enlace;
+  public:
+	Nodo (T t){
+	   dato = t;
+	   enlace = 0;
+	}
+	Nodo (T p, Nodo<T>* n){
+	   dato = p;
+	   enlace = n;
+	}
+	T datoNodo(){
+	   return dato;
+	}
+	Nodo<T>* enlaceNodo(){
+	   return enlace;
+	}
+
+	void ponerEnlace(Nodo<T>* sgte){
+	enlace = sgte;
+	}
+};
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+	Nodo<string>* cola;
+	Nodo<string>* nodo2;
+	Nodo<string>* nodo3;
+	Nodo<string>* cabeza;
+	cola=new Nodo<string>("Pablo");
+	nodo2=new Nodo<string>("Guadalupe",cola);
+	nodo3=new Nodo<string>("Benito",nodo2);
+	cabeza=new Nodo<string>("Maria",nodo3);
+	cout<<"Direccion de la cabeza\tValor\A donde apunta"<<endl;
+	cout<<cabeza<<"\t\t"<<cabeza->datoNodo()<<"\t"<<cabeza->enlaceNodo()<<endl<<endl;
+	cout<<"Direccion de la cola\tValor\Adonde apunta"<<endl;
+	cout<<cola<<"\t\t"<<cola->datoNodo()<<"\t"<<cola->enlaceNodo()<<endl<<endl;
+	system("pause");
+	return 0;
+
+}
+

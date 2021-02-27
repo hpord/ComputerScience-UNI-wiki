@@ -1,0 +1,60 @@
+print equ 136h
+getbyt equ 11Eh
+sndchr equ 148h
+org 8000h
+wait_:
+jnb P3.2,menu
+sjmp wait_
+menu:
+lcall print
+db 0dh,0ah,"Averigua si un numero es primo",0dh,0ah
+db 0dh,0ah,"Ingrese un numero: ",0ah,0
+lcall getbyt
+mov 30h,A
+cjne A,#2,otroN
+sjmp SiPrimo
+otroN:
+mov R2,#2
+continua:
+mov A,30h
+mov B,R2
+div AB
+mov A,B
+cjne A,#0,sigue
+sjmp NoPrimo
+sigue:
+inc R2
+mov A,R2
+cjne A,30h,continua
+sjmp SiPrimo
+NoPrimo:
+mov A,30h
+lcall print
+db " No es Primo",0dh,0Ah,0
+mov P1,#63
+esperar:
+jnb P3.2,menu_
+jnb P3.3,salir
+sjmp esperar
+menu_:
+ljmp menu
+salir:
+lcall print
+db 0dh,0ah,"Hasta la proxima...",0dh,0ah,0
+ljmp 2F0h
+SiPrimo:
+mov A,30h
+lcall print
+db " Es Primo",0dh,0Ah,0
+mov P1,#115
+esperar_:
+jnb P3.2,menu__
+jnb P3.3,salir_
+sjmp esperar_
+menu__:
+ljmp menu
+salir_:
+lcall print
+db 0dh,0ah,"Hasta la proxima...",0dh,0ah,0
+ljmp 2F0h
+end

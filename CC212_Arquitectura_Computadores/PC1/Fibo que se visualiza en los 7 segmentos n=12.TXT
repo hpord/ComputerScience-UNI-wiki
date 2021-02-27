@@ -1,0 +1,95 @@
+;Programa que visualiza en el display 
+;la serie de fibonacci: 1,1,2,3,5,8,13,21,34,55,89,144 
+;para (n=12). 
+centena equ 30h 
+decena equ 31h 
+unidad equ 32h
+org 0000h 
+  lcall serie
+otravez:
+  mov R2,#12 
+  mov R0,#50h
+loop: 
+  mov A,@R0 
+  lcall obtiene_digitos 
+displays:
+  cjne A,#0,muestradig 
+  sjmp undigito
+;Se muestra los digitos en los displays
+
+muestradig: 
+ mov A,centena 
+ lcall display
+ mov P1,#0FFh 
+ setb P3.4
+ clr P3.3 
+ mov P1,A 
+ mov A,decena
+ lcall display
+ mov P1,#0FFh
+ clr P3.4
+ setb P3.3
+ mov P1,A
+undigito:
+ mov A,unidad 
+ lcall display 
+ mov P1,#0FFh
+ clr P3.4
+ clr P3.3 
+ mov P1,A 
+ inc R0 
+ lcall retardo
+ djnz R2,loop
+ sjmp otravez
+retardo:
+ mov R1,#11 
+ djnz R1,$
+ ret
+;Subrutina que genera la serie de Fibonacci 
+serie:
+ mov R0,#10
+ mov R1,#52h 
+ mov R2,#3
+ mov R4,#1
+ mov R5,#1
+ mov 50h,R4
+ mov 51h,R5
+repite:
+ mov A,R4 
+ add A,R5
+ mov @R1,A
+ mov A1,R5
+ mov R4,A
+ mov A,@R1
+ mov R5, A
+ inc R2
+ inc R1
+ djnz R0,repite
+ ret
+
+;Subrutina que obtiene los digitos a mostrar en el display 
+
+obtiene_digitos:
+  mov B,#100 ;Muevo el valor 100 a B 
+  div AB
+  mov centena,A ;Muevo el valor de A a 30h 
+  mov A,B
+  mov B,#10 ;muevo 10 a B 
+  div AB
+  mov decena,A
+  mov unidad,B
+  ret
+  end
+
+
+
+;Subrutina que obtiene el patrón de bits a mostrar en el display Display:
+inc A movc A,@A+PC ret db db db db db db db db db db
+0c0h; 0f9h; 0a4h; 0b0h; 99h; 92h; 82h;
+0f8h; 80h; 90h;
+END En Ejecución, (hacer en el campo update freq: 6, para System clock: 12)
+se muestra "0" en el display se muestra "1" en el display
+"2" "3" "4" "5" "6" "7" "8" "9"
+ ;muevo el valor de A a 31h 
+;División de A entre B y el resultado se guarda en A ;el residuo se guarda en el acumulador
+;divido A entre B y el resultado se guarda en A ;se guarda el valor de B en 32h

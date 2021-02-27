@@ -1,0 +1,105 @@
+(1) Circuitos combinatorios:
+
+Circuitos combinatorios. La salida depende solo de las entradas. Ejemplos : AND, OR, NOT, decoders, multiplexores, sumadores, etc.
+
+(2) DataPath
+Realiza operaciones aritméticas y lógicas.
+
+Elementos del datapath:
+ ALU.
+ Sumadores.
+ Contador de Programa
+ Memoria de instrucciones.
+ Memoria de datos.
+ Banco de registros.
+
+Primera Parte: Ciclo de fetch. Lee una instrucción e incrementa el PC
+Segunda Parte: Se implementan: instrucciones aritméticas y lógicas. Instrucciones de carga y almacenaje
+
+Para leer un registro:
+	 Entrada: número de registro.
+	 Salida: dato contenido en el registro.
+Para escribir un registro:
+	 Entrada: número de registro, dato y una señal de reloj para controlar la escritura.
+
+(3)
+Principio de Localidad:
+Establece que en un instante dado un programa accede a un espacio pequeño de su espacio pequeño de su espacio de direcciones
+
+Bloque:
+Es la unidad minima de informacion que puede estar o no estar presente en una jerarquia de dos niveles.
+
+Acierto(hit): se produce cuando los datos que busca la CPU están en el nivel superior
+FALLO: si los datos no estan, se produce un fallo(miss) y se busca en el nivel inferior
+
+(4) Memoria Caché
+Es el nivel de memoria situada entre el procesador y la memoria principal
+
+Usos:
+Caché de datos: Guardan los ultimos datos referenciados.
+Caché de instrucciones: Guardan las ultimas instrucciones ejecutadas.
+Caché de trazas: Guardan secuencias de instrucciones para ejecutar que no son necesariamente adyacentes.
+
+Estrategias:
+
+Caché de mapeo directo: A cada dato se le asigna un lugar en el caché de acuerdo a su dirección en la memoria principal.
+
+Caché adociativo total: Un bloque de memoria principal puede asignarse a cualquier bloque de memoria caché
+
+Caché asociativo por conjunto:  Divide la memoria caché en conjuntos que contendrán un número fijo de bloques.
+
+(5) Memoria Virtual
+La memoria principal actúa como caché de la memoria secundaria (disco duro). Esta técnica se denomina Memoria Virtual.
+
+Caracteristicas:
+* Memoria virtual es un mecanismo que permite que la memoria principal parezca mas grande que su tamaño físico.
+* Permite ejecutar programas mas grandes que la memoria física disponible.
+
+(7) Tipos de Buses:
+	El bus es un sistema digital que transfiere datos entre los componentes de una computadora o entre varias computadoras. 
+
+* Buses Procesador-Memoria
+	• Pequeña longitud(cortas) y de alta frecuencia
+	• Diseñado para maximizar el ancho de banda Procesador-Memoria
+* Buses de E/S
+	• Más largas, permite múltiples conexiones
+	• Especificado por normas(standards) para interoperabilidad
+	• Se conecta al bus Procesador-Memoria a través de un puente
+* Buses gráficos
+	son otros con características diferentes y que realizan funciones especiales
+
+(8) Comunicación con el Procesador
+	• Encuesta (polling). Comprueba periódicamente el estado de un dispositivo de E/S para determinar la necesidad de dar servicio al dispositivo
+	
+	• E/S dirigida por interrupciones. Emplea interrupciones para indicar la procesador que un dispositivo de E/S necesita atención
+
+	• DMA(Acceso directo a memoria). Mecanismo que proporciona a un controlador de dispositivo la capacidad de transferir datos directamente hacia o desde la memoria sin la participación del procesador
+
+(10)
+Procesador Superescalar: Este procesador emplea una técnica avanzada de segmentación que le permite ejecutar más de una instrucción por ciclo de reloj. Para alcanzar buenas prestaciones en este procesador, se requiere que el compilador planifique las instrucciones de forma que se eliminen dependencias y se mejore la frecuencia de ejecución.
+
+Procesador Vectorial: Es un procesador capaz de ejecutar operaciones matemáticas sobre múltiples datos de forma simultánea, en contraste con
+los procesadores escalares, capaces de manejar sólo un dato cada vez. Los procesadores vectoriales proporcionan operaciones de alto nivel que trabajan sobre vectores. Segmentan las operaciones sobre los elementos de un vector, tanto la operación aritmética como los accesos a memoria.
+
+GPU (Unidades de procesamiento gráfico): La industria de los juegos por computador, tanto en PCs como en consolas como la Sony PlayStation, fue una fuerza motriz decisiva para la mejora del procesamiento gráfico. A medida que los procesadores gráficos aumentaban en potencia, se ganaron el nombre de Unidades de procesamiento gráfico (Graphics Processing Units) o GPUs, para distinguirse de las CPUs
+
+Es un coprocesador dedicado al procesamiento de gráficos u operaciones de coma flotante, para aligerar la carga de trabajo del procesador central en aplicaciones como los videojuegos o aplicaciones 3D interactivas.
+
+
+==================================
+
+(2) Implementacion:
+1. Enviar el PC (contador de programa) a la memoria y sacar la siguiente instrucción (ciclo de fetch).
+2. Lee dos registros que son operandos en la instrucción
+3. Ejecuta operación aritmética/lógica
+4. Escribe resultado en el registro
+
+(4)
+* La TLB actúa como caché para las entradas que mapean solo a páginas físicas.
+
+* Según la analogía con la biblioteca, podemos pensar que una dirección virtual se corresponde con el título del libro; y que una dirección física se corresponde con su ubicación en la biblioteca donde se encuentra el libro, que le fue asignada según el código de identificación de la biblioteca.
+
+(6) Lenguajes de Programacion:
+DirectX, OpenGL, C para Gráficos (Cg), High Level Shader Language (HLSL)
+
+*Las GPUs son aceleradores que complementan a la CPU, no realizan todas las funciones de la CPU. No importa esto ya que en un sistema GPU y CPU, la CPU puede hacer todo lo que la GPU no puede.

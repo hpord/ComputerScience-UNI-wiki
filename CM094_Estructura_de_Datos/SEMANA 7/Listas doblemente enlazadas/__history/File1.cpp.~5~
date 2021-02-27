@@ -1,0 +1,42 @@
+class NodoDoble{
+	private:
+		int dato;
+		NodoDoble* adelante; // A la derecha
+		NodoDoble* atras; // A la izquierda
+	public:
+		NodoDoble(int t){
+			dato=t;
+			adelante=atras=0;
+
+		}
+
+		int datoNodo(){
+			return dato;
+		}
+		NodoDoble* adelanteNodo(){return adelante;}
+		NodoDoble* atrasNodo(){return atras;}
+		void ponerAdelante(NodoDoble* a){adelante=a;}
+		void ponerAtras(NodoDoble* a){atras=a;}
+};
+
+#include <iostream>
+using namespace std;
+int main(){
+	NodoDoble *x, *y, *z;
+	x = new NodoDoble(7);
+	y = new NodoDoble(9);
+	z = new NodoDoble(5);
+	cout<<"Atras\tDirDato\t\tDato\tAdelante\n";
+	cout<<x->atrasNodo()<<"\t"<<x<<"\t"<<x->datoNodo()<<"\t"<<x->adelanteNodo()<<endl;
+	cout<<y->atrasNodo()<<"\t"<<y<<"\t"<<y->datoNodo()<<"\t"<<y->adelanteNodo()<<endl;
+	cout<<z->atrasNodo()<<"\t"<<z<<"\t"<<z->datoNodo()<<"\t"<<z->adelanteNodo()<<endl;
+	x->ponerAdelante(y); y->ponerAtras(x);
+    y->ponerAdelante(z); z->ponerAtras(y);
+	cout<<"Atras\t\tDirDato\tDato\tAdelante\n";
+	cout<<x->atrasNodo()<<"\t"<<x<<"\t"<<x->datoNodo()<<"\t"<<x->adelanteNodo()<<endl;
+	cout<<y->atrasNodo()<<"\t"<<y<<"\t"<<y->datoNodo()<<"\t"<<y->adelanteNodo()<<endl;
+	cout<<z->atrasNodo()<<"\t"<<z<<"\t"<<z->datoNodo()<<"\t"<<z->adelanteNodo()<<endl;
+
+    return 0;
+
+}

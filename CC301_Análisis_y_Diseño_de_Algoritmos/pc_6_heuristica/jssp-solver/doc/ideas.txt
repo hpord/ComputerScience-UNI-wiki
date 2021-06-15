@@ -1,0 +1,44 @@
+- Break even makespan
+ - no improve
+- Ranking moves based on critical path
+ - no improve
+
+- Dynamic Tabu List Size?
+ - no improve
+ 
+- Stop Criterion
+	A/B strategy?
+
+- Decrease amount of dynamic memory use
+
+===================
+Ideas
+Can a upper bound of the makespan be used to accelerate the local search? 
+
+MH
+
+1 - Generate Initial Solutions Population (active scheduling generaton)
+	- every generated solutions receive a ls improve.
+	- can use distance parameter here?
+
+2 - 
+
+Add test to check for optimal point.
+
+select pair biased by distance.
+
+Keep infeasible solutions in the population?
+
+Methods to keep variability in population (high inner distances). 
+
+Remove duplicate solutions.
+
+==========================
+Current setting:
+
+Population size: 150
+Few generations
+Few elite and mutation
+Procedure repetition: 10
+Small tabu list.
+

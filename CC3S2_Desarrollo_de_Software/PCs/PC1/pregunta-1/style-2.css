@@ -1,0 +1,41 @@
+body {
+    color: black;
+}
+
+#container {
+    align-items: flex-end;
+    padding: 10px;
+}
+
+#container div{
+    display:inline-block;
+    margin: 5px;
+    width: 55px;
+    height: 120px;
+    font-size:45px;
+    text-align: center;
+    background-color: aquamarine;
+    float: none;
+    border-bottom: dashed;
+    border-right: dashed;
+    border-width: 6px;
+    border-color: coral;
+   
+}
+
+#container div:hover{
+    color: gold;
+    display:inline-block;
+    margin: 5px;
+    width: 55px;
+    height: 120px;
+    font-size:45px;
+    text-align: center;
+    background-color: cornflowerblue;
+    float: none;
+    border-bottom: dashed;
+    border-right: dashed;
+    border-width: 6px;
+    border-color: coral;
+   
+}

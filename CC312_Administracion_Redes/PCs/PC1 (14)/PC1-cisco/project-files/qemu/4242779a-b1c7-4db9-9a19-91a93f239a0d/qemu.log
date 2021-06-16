@@ -1,3 +1,0 @@
-Start QEMU with "D:\PROGRAMAS\gns3\qemu-3.1.0\qemu-system-x86_64w.exe" -name SWL2-4 -m 520M -smp "cpus=1,sockets=1" -boot "order=c" -drive "file=D:\TRABAJOS\UNIVERSIDAD\CURSOS\CC312_Administracion_Redes\PCs\PC1\PC1\project-files\qemu\4242779a-b1c7-4db9-9a19-91a93f239a0d\hda_disk.qcow2,if=ide,index=0,media=disk,id=drive0" -uuid 4242779a-b1c7-4db9-9a19-91a93f239a0d -serial "telnet:127.0.0.1:5016,server,nowait" -monitor "tcp:127.0.0.1:51365,server,nowait" -net none -device "e1000,mac=0c:7e:e3:9a:0d:00,netdev=gns3-0" -netdev "socket,id=gns3-0,udp=127.0.0.1:10057,localaddr=127.0.0.1:10056" -device "e1000,mac=0c:7e:e3:9a:0d:01,netdev=gns3-1" -netdev "socket,id=gns3-1,udp=127.0.0.1:10059,localaddr=127.0.0.1:10058" -nographic
-
-Execution log:

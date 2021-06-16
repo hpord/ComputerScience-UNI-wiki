@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>CC3S2  LAB06</title>
+    </head>
+    <body>
+        <h1>CC3S2  LAB06</h1>
+        <p>
+           Si puede ver este mensaje, significa que su servidor web  de  Node.js esta trabajando!
+        </p>
+        <p>
+            Sus soluciones a las tareas del LAB06 deben servirse con este servidor web   
+            desde los siguientes archivos que se pueden acceder para testear  en el browser:
+        </p>
+        <ul>
+            <li>Tarea #1 - Getting started - <a href="getting-started.html">getting-started.html</a></li>
+            <li>Tarea #2 - Componente para mostrar los Estados de EUA - <a href="p2.html">p2.html</a></li>
+            <li>Tarea #3 -  Personalizacion del Layout - <a href="p2.html">p2.html</a></li>
+            <li>Tarea #4 - Switch para vistas- <a href="p4.html">p4.html</a></li>
+        </ul>
+        <script type="text/javascript">
+            //<![CDATA[
+            //  Los frameworks de JavaScript  tienen problemas para utilizar el protocolo file.
+            // Ya que los archivos del proyecto son acceosibles  usando los protocolos file o 
+            // http  advertimos al usuario si no  está usando http.
+            if(window.location.protocol !== 'http:') {
+                var msg = "Los archivos del LAB06 deben  accederse con el protocolo http (no desde los archivos locales)."  +
+                                "\nUtilice la URL http://localhost:3000";
+                console.error(msg);
+                alert(msg);
+            }
+            //]]>
+        </script>
+    </body>
+</html>

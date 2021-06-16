@@ -1,0 +1,30 @@
+.container {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.con {
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50px;
+  top: 100px;
+  width: auto;
+  padding: 8px;
+  border: 1px solid grey;
+  border-radius: 20px;
+  background-color: rgba(0, 255, 55, 0.48);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: rgb(156, 154, 154);
+  color: white;
+}

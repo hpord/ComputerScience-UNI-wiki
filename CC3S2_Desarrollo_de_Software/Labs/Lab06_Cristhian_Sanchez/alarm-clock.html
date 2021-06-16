@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        RELOJ ALARMA
+    </title>
+    <link href="alarm-clock.css" rel="stylesheet">
+    <script src="alarm-clock.js"></script>
+</head>
+
+<body>
+
+    <!-- (A) Hora actual -->
+    <div id="ctime">
+        <h1 class="header">HORA ACTUAL</h1>
+        <div class="square">
+            <div class="digits" id="chr">00</div>
+            <div class="text">HR</div>
+        </div>
+        <div class="square">
+            <div class="digits" id="cmin">00</div>
+            <div class="text">MIN</div>
+        </div>
+        <div class="square">
+            <div class="digits" id="csec">00</div>
+            <div class="text">SEG</div>
+        </div>
+    </div>
+
+    <!-- (B) Establecer alarma -->
+    <div id="tpick">
+        <h1 class="header">
+            ESTABLECER ALARMA
+        </h1>
+        <div id="tpick-h"></div>
+        <div id="tpick-m"></div>
+        <div id="tpick-s"></div>
+        <div>
+            <input type="button" value="Establecer" id="tset" />
+            <input type="button" value="Resetear" id="treset" disabled />
+        </div>
+    </div>
+
+    <!-- (C) Sonido de alarma -->
+    <audio id="alarm-sound" loop>
+        <source src="wake-up-sound.mp3" type="audio/mp3">
+    </audio>
+</body>
+
+</html>

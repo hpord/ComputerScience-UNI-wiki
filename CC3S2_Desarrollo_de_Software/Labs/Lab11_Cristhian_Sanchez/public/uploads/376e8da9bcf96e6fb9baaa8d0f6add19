@@ -1,0 +1,64 @@
+def CrossProduct(A):
+    """
+    Función para hallar el producto cruz
+    """
+
+    # Calculamos la componente X del vector A[1]A[0]
+    X1 = A[1][0] - A[0][0]
+
+    # Calculamos la componente Y del vector A[1]A[0]
+    Y1 = A[1][1] - A[0][1]
+
+    # Calculamos la componente X del vector A[2]A[0]
+    X2 = A[2][0] - A[0][0]
+
+    # Calculamos la componente Y del vector A[2]A[0]
+    Y2 = A[2][1] - A[0][1]
+
+    # Returnamos el producto cruz
+    return X1 * Y2 - Y1 * X2
+
+
+def isConvex(points):
+    """
+    Función para validar si un polígono es convexo o no
+    """
+
+    # cantidad de aristas
+    N = len(points)
+
+    # dirección del producto cruz de las previas aristas
+    # recorridas
+    prev = 0
+
+    # dirección del producto cruz de las actuales aristas
+    # recorridas
+    curr = 0
+
+    # recorrido sobre las aristas
+    for i in range(N):
+        # Almacenamos las tres aristas adyacentes del polígono
+        temp = [points[i], points[(i + 1) % N], points[(i + 2) % N]]
+
+        # Actualizamos curr
+        curr = CrossProduct(temp)
+
+        # Si curr es diferente de 0
+        if curr != 0:
+            # Si la dirección del producto cruz de todos las
+            # aristas adyacentes no es la misma
+            if curr * prev < 0:
+                return False
+        else:
+            # Actualizamos curr
+            prev = curr
+    return True
+
+
+if __name__ == "__main__":
+
+    points = [[0, 0], [0, 1], [1, 1], [1, 0]]
+    if isConvex(points):
+        print("El poligono ES convexo")
+    else:
+        print("El poligono NO ES convexo")

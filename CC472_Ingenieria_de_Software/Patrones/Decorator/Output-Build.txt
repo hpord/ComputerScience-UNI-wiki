@@ -1,0 +1,4 @@
+﻿Build started...
+1>------ Build started: Project: Decorator, Configuration: Debug Any CPU ------
+1>C:\Users\andr33wD\Desktop\Ingenieria de Software\Decorator\Decorator\Class1.cs(141,6,141,6): error CS1513: } expected
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========

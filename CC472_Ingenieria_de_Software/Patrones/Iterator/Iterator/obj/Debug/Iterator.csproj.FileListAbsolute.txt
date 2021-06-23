@@ -1,0 +1,10 @@
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\bin\Debug\Iterator.exe.config
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\bin\Debug\Iterator.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\bin\Debug\Iterator.pdb
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.csproj.AssemblyReference.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.Form1.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.Properties.Resources.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.csproj.GenerateResource.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.csproj.CoreCompileInputs.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Iterator\Iterator\obj\Debug\Iterator.pdb

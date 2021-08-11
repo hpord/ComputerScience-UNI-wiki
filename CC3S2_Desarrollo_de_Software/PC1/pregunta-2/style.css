@@ -1,0 +1,40 @@
+body {
+    color: black;
+}
+
+#container {
+    align-items: flex-end;
+    padding: 10px;
+}
+
+#container div{
+    display:inline-block;
+    margin: 5px;
+    width: 55px;
+    height: 120px;
+    font-size:45px;
+    text-align: center;
+    background-color: aquamarine;
+    float: none;
+    border-bottom: dashed;
+    border-right: dashed;
+    border-width: 6px;
+    border-color: coral;
+   
+}
+
+#container div:not(:nth-child(1)):not(:nth-child(2)) {
+    -webkit-animation: cssAnimation 3s forwards; 
+    animation: cssAnimation 3s forwards;
+}
+
+@keyframes cssAnimation {
+    0%   {opacity: 1;}
+    50%  {opacity: 50%; margin-top: 200px;}
+    100% {opacity: 1%; margin-top: 400px;}
+}
+@-webkit-keyframes cssAnimation {
+    0%   {opacity: 1;}
+    50%  {opacity: 50%; margin-top: 200px;}
+    100% {opacity: 1%; margin-top: 400px;}
+}

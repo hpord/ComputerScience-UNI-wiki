@@ -1,0 +1,17 @@
+El principio de nuestro algoritmo se puede presentar brevemente de la siguiente manera. 
+- Un primer límite inferior de (KSP), z, se calcula con la heurística greedy del llamado greedyKSP  (ver Alg. 1).
+
+• las listas (Lik) i∈M, k≤ni se calculan mediante el
+procedimiento NextList presentado en la sección anterior,
+
+• luego, tratamos de reducir las variables libres asociadas con cada estado en (Lik) i∈M, k≤ni
+
+- finalmente, el límite inferior zy las capacidades
+(Ci) i∈M, respectivamente, se actualizan mediante los procedimientos UpdateZ y UpdateC, respectivamente descritos a continuación
+
+
+La fase de programación dinámica se detiene cuando
+todas las listas (Lini
+) i∈M se han calculado. Estas
+Las listas son utilizadas por el procedimiento FindOptimalValue para
+encontrar una solución óptima para el (KSP).

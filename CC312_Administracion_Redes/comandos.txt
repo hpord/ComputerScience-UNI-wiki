@@ -1,0 +1,60 @@
+configure terminal
+interface fastEthernet 2/0
+ip address <IP de la interfaz>  <mascara de la IP>
+no shutdown
+end
+
+show ip route (para ver la tabla de enrutamiento)
+
+show ip interface brief
+
+ip route <IP RED destino> <mascara de RED destino> <salto-siguiente>
+
+
+# configurando VLAN's con switch CISCO
+ena
+vlan database
+vlan <NRO> <NAME>
+exit
+
+conf t
+int range f1/0 - 1
+switchport mode trunk
+no sh
+exit
+
+conf t
+int range f1/0 - 1
+switchport mode access
+no sh
+exit
+
+# configurando router 
+ena
+conf t
+int f0/0
+no sh
+exit
+
+
+int f0/0.1 
+encapsulation dot1Q 10
+ip add 10.0.10.1 255.255.255.0
+no sh
+exit
+
+int f0/0.2 
+encapsulation dot1Q 20
+ip add 10.0.20.1 255.255.255.0
+no sh
+exit
+
+int f0/0.3 
+encapsulation dot1Q 30
+ip add 10.0.30.1 255.255.255.0
+no sh
+exit
+
+# configurando pcs
+ip 10.0.20.5/24 10.0.20.1
+

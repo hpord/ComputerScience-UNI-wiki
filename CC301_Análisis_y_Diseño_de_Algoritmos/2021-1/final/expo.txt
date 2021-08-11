@@ -1,0 +1,64 @@
+Un problema donde aplicar el algoritmo voraz es el de obtener el árbol de recubrimiento 
+mínimo en un grafo conexo no dirigido, como el de la Figura. 
+Ese árbol es un subgrafo que conecta todos los nodos siguiendo un camino cuyo coste 
+de la suma del valor de las aristas es mínimo. En la Figura se representa con las aristas 
+en color rojo.
+
+El subgrafo obtenido contiene los 5 nodos del grafo unidos por 4 aristas. Hay que recordar que 
+un grafo conexo con n nodos debe contener al menos n-1 aristas. Si contiene menos no es conexo. 
+Si contiene más existe al menos un ciclo. En otro caso si contiene exactamente n-1 aristas ese 
+subgrafo es un árbol pues es conexo y no contiene ciclos.
+
+Este planteamiento se aplica en problemas reales. Supongamos que cada nodo representa una 
+ciudad y queremos tender un cable teléfonico que conecte todas las ciudades usando la menor 
+longitud de cable. Los valores de las aristas son las distancias entre ciudades pasando 
+por lugares por donde podríamos instalar ese cable, como carreteras. Buscando el árbol de 
+recubrimiento mínimo obtendríamos la menor distancia que conecta todas las ciudades.
+
+
+COMPLEJIDAD
+
+En un grafo con a aristas y n nodos, el coste asintótico es O(a log n).
+Veamos el motivo de este resultado por cada parte del algoritmo.
+
+La obtención de las aristas supone iterar por n nodos. 
+Por cada nodo luego hay que iterar por sus enlaces a otros nodos. 
+Si todos los nodos están conectados habrán C(n, 2) = ½ n (n-1) aristas 
+(combinaciones de n nodos tomados de dos en dos). 
+El coste sería O(n3), dado que el total de iteraciones sería 
+∑(i=1..n) (C(n, 2)-i+1) = ½ n (n-1)2, 
+puesto que podríamos considerar el primer nodo conectado con todos, 
+el segundo con todos menos el primero pues esa arista ya se incluye en la anterior, etc.
+
+
+Ordenar las aristas tiene un coste O(a log a) que es el típico de ordenar un array de longitud a. 
+Como el grafo es conexo a ≥ n-1. Ya vimos que el máximo número de aristas posibles es 
+a ≤ C(n, 2) = ½ n (n-1)2. Con el mínimo número de aristas posibles tendremos un 
+coste de O(a log(n-1)) ⇒ O(a log n). 
+
+Con el máximo número de aristas posibles el 
+coste será O(a log(½ n (n-1)2)) ⇒ O(a log n2) ⇒ O(a 2 log n) ⇒ O(a log n). 
+Para comprobar que esta equivalencia es cierta, recuerde la regla del límite que dice:
+
+Si limn→∞ f(n)/g(n) ∈ ℝ+ entonces f(n) ∈ O(g(n)) y g(n) ∈ O(f(n))
+
+Aplicándola a lo anterior limn→∞ (a log(½ n (n-1)2))/(a log n) = 3 ∈ ℝ+, 
+comprobándose la corrección de O(a log n) para cualquier número de aristas a ordenar.
+
+
+El coste de construir la partición es O(n) puesto que hay que inicializar un 
+array de n rótulos y otro de n rangos.
+
+El coste del bucle voraz se analiza por medio del coste de la partición. 
+En el tema anterior vimos que partiendo de n conjuntos disjuntos, 
+el coste para fusionar todos los disjuntos en un único conjunto es O(c α(c, n)), 
+donde c=b+f, siendo b el total de llamadas a buscar y f≤n-1 el total de llamadas a fusionar.
+
+El bucle itera por a aristas como máximo, por lo que se producen b = 2a 
+llamadas a buscar en el peor caso. Las operaciones fusionar siempre serán f=n-1, 
+que son las necesarias para fusionar n conjuntos disjuntos. Con c=b+f=2a+n-1 el coste 
+de nuestra partición será esencialmente lineal en este c, es decir, O(c) ⇒ O(2a+n-1) ⇒ O(2a) 
+dado que a≥n-1.
+
+De los tres costes en secuencia O(a log n), O(n) y O(2a) el máximo es O(a log n) 
+usando la versión simplificada del algoritmo de Kruskal.

@@ -1,0 +1,55 @@
+import numpy as np
+
+
+if __name__ == '__main__':
+    A = np.array([i for i in range(1, 21)])
+    B = np.array([i for i in range(1, 31, 2)])
+    C = np.array([i for i in range(30, 61)])
+
+    
+    N = min(len(A), len(B), len(C))
+    total = len(A) + len(B) + len(C)
+    sortedArray = np.zeros(total)
+    for idx, i in enumerate(range(0, total, 3)):
+        if idx < N:
+            if A[idx] <= B[idx] and C[idx] <= B[idx] and C[idx] <= A[idx]:
+                sortedArray[idx] = B[idx]
+                sortedArray[idx+1] = A[idx]
+                sortedArray[idx+2] = C[idx]
+            
+            if A[idx] <= B[idx] and B[idx] <= C[idx] and A[idx] <= C[idx]:
+                sortedArray[idx] = C[idx]
+                sortedArray[idx+1] = B[idx]
+                sortedArray[idx+2] = A[idx]
+            
+            if A[idx] <= B[idx] and B[idx] <= C[idx] and A[idx] <= C[idx]:
+                sortedArray[idx] = C[idx]
+                sortedArray[idx+1] = B[idx]
+                sortedArray[idx+2] = A[idx]
+        else:
+            break
+
+    print(sortedArray)
+    sortedArray[:3*N] = sorted(sortedArray[:3*N])
+
+
+    idx
+    for i in range(N, total):
+        if i < len(A):
+            if A[i] <= C[i]:
+                sortedArray[i] = C[idx]
+                sortedArray[i+1] = A[idx]
+                idx += 1
+            
+            else:
+                sortedArray[i] = A[idx]
+                sortedArray[i+1] = C[idx]
+                idx += 1
+        else:
+            sortedArray[i] = C[idx]
+            idx += 1
+
+
+    
+    for i in range(65):
+        print(sortedArray[i], end="  ")

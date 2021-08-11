@@ -1,0 +1,36 @@
+ La búsqueda tabú aumenta el rendimiento del método de búsqueda local mediante el uso 
+de estructuras de memoria: una vez que una potencial solución es determinada, 
+se la marca como "tabú" de modo que el algoritmo no vuelva a visitar esa posible solución.
+
+Detalles basicos :
+
+La búsqueda tabú es un algoritmo metaheurístico que puede utilizarse para resolver problemas de optimización 
+combinatoria, tales como el problema del viajante 
+
+La búsqueda tabú utiliza un procedimiento de búsqueda local o por vecindades para moverse iterativamente desde 
+una solución x hacia una solución x' en la vecindad de x, hasta satisfacer algún criterio de parada.
+
+Para poder explorar regiones del espacio de búsqueda que serían dejadas de lado por el procedimiento de
+búsqueda local (ver óptimo local), la búsqueda tabú modifica la estructura de vecinos para cada solución a 
+medida que la búsqueda progresa. Las soluciones admitidas para N*(x) , el nuevo vecindario, son determinadas 
+mediante el uso de estructuras de memoria. 
+La búsqueda entonces progresa moviéndose iterativamente de una solución x hacia una solución x' en N*(x).
+
+TABU TSP:
+
+El problema del viajante (TSP), es comúnmente utilizado para mostrar la funcionalidad de la búsqueda tabú. 
+El TSP requiere buscar un orden en el cual viajar entre ciudades, tal que la distancia recorrida sea minimizada.
+
+Por ejemplo, si las ciudades A y B están una al lado de la otra, mientras que la ciudad C está más lejos, 
+la distancia total recorrida será más corta si las ciudades A y B son visitadas una después de la otra, antes de visitar C. 
+Como encontrar un orden óptimo para visitar las ciudades en el TSP es un problema NP-Hard. 
+los métodos de aproximación basados en heurísticas son útiles para lograr la optimalidad.
+
+La búsqueda tabú puede utilizarse para encontrar una solución satisfactoria para el TSP. 
+Primero, la búsqueda tabú comienza con una solución inicial, que puede ser generada con el algoritmo del vecino más cercano. 
+Para crear nuevas soluciones, el orden en que dos ciudades son visitadas es intercambiado. 
+La distancia total recorrida entre todas las ciudades es utilizada para juzgar cuánto mejor es una solución que otra. 
+Para prevenir ciclos y para salir de los óptimos locales, una solución es agregada a la lista tabú si es que es aceptada en N*(x),
+el vecindario de soluciones. Se continúan creando nuevas soluciones hasta que se cumple algún criterio de parada, 
+como por ejemplo un número arbitrario de iteraciones. Una vez que la búsqueda tabú se detiene, 
+la mejor solución es aquella que cuya distancia total a recorrer entre las ciudades es la menor.

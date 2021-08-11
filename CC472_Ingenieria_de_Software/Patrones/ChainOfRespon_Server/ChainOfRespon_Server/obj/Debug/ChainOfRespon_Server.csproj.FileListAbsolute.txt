@@ -1,0 +1,10 @@
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\bin\Debug\ChainOfRespon_Server.exe.config
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\bin\Debug\ChainOfRespon_Server.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\bin\Debug\ChainOfRespon_Server.pdb
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.Properties.Resources.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.csproj.GenerateResource.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.csproj.CoreCompileInputs.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.pdb
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.csproj.AssemblyReference.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\ChainOfRespon_Server\ChainOfRespon_Server\obj\Debug\ChainOfRespon_Server.Form1.resources

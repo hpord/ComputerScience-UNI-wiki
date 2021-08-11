@@ -1,0 +1,33 @@
+Es importante tener en cuenta que calculamos y almacenamos no
+"distancia de la ruta óptima para la combinación de k ciudades"
+pero
+"distancia de la ruta óptima para la combinación de k ciudades Y para la ciudad del punto final de esta combinación".
+Comprenderlo ayudará con el significado de los dos primeros multiplicadores en la siguiente fórmula.
+
+El número de operaciones en la primera fase es:
+
+IMAGEN
+
+La falta de superíndice en la suma significa para todo k> = 2 que es válido para el coeficiente binomial. 
+Entonces, el último término válido no nulo de suma será para k = n − 1
+
+IMAGEN 
+
+Significa que nuestra suma no captura las últimas opciones de ciudad para conectarse a la primera ciudad. 
+Hay n − 1 ciudades para conectar con la primera ciudad.
+ Entonces, finalmente agregaremos este término a la suma.
+
+IMAGEN
+
+La segunda fase consiste en restaurar la ruta óptima mediante las marcas que hemos realizado en la primera fase simultáneamente con el cálculo de las distancias.
+
+Para cada ruta óptima "para la combinación de k ciudades Y para la ciudad de punto final de esta combinación", hemos guardado la penúltima ciudad.
+
+Para retroceder la ruta óptima, necesitamos pedirle a alguna estructura de datos que devuelva la penúltima ciudad
+ "para la combinación de k ciudades Y para la ciudad del punto final de esta combinación".
+ Entonces esta estructura de datos debe ser algo como
+Mapa <combinación de k ciudades, Mapa <última ciudad, penúltima ciudad >>. 
+Como índice de combinación de k ciudades podemos usar, por ejemplo, binary_string [id de la ciudad] = 1 
+si el id de la ciudad está en combinación.
+ Por lo tanto, debemos observar todos los elementos de combinación de k ciudades para identificar la 
+combinación e indexar nuestra estructura de datos. Esto nos da el número de operaciones para la segunda fase:

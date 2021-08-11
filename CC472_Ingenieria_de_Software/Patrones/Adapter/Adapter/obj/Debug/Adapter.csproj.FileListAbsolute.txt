@@ -1,0 +1,10 @@
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.csproj.AssemblyReference.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.Form1.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.Properties.Resources.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.csproj.GenerateResource.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.csproj.CoreCompileInputs.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\bin\Debug\Adapter.exe.config
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\bin\Debug\Adapter.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\bin\Debug\Adapter.pdb
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Adapter\Adapter\obj\Debug\Adapter.pdb

@@ -1,0 +1,10 @@
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\bin\Debug\Factoy Method.exe.config
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\bin\Debug\Factoy Method.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\bin\Debug\Factoy Method.pdb
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy Method.csproj.AssemblyReference.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy_Method.Form1.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy_Method.Properties.Resources.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy Method.csproj.GenerateResource.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy Method.csproj.CoreCompileInputs.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy Method.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\Factoy Method\Factoy Method\obj\Debug\Factoy Method.pdb

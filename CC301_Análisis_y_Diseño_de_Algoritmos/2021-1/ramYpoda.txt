@@ -1,0 +1,50 @@
+Aquí, M es la matriz de costos , esta contiene información como el número de trabajos
+disponibles,una lista de trabajadores disponibles y el costo asociado para cada trabajo. 
+
+La función Costo mínimo(MinCost) mantiene una lista de nodos activos. 
+Esta función calcula el costo mínimo del nodo activo en cada nivel del árbol. 
+Después de encontrar el nodo con costo mínimo, 
+se elimina el nodo de la lista de nodos activos y lo devolvemos. 
+
+Estamos usando la función Add (Agregar) en el pseudocódigo, que calcula el costo de un
+nodo en particular y lo agrega a la lista de nodos activos.
+ 
+En el árbol del espacio de búsqueda, cada nodo contiene cierta información, como 
+el costo, el número total de trabajos y el número total de trabajadores.
+
+
+
+STRUCT NODE
+
+// almacena el nodo padre del nodo actual
+// ayuda en el camino de rastreo cuando se encuentra la respuesta
+
+// contiene costo para los nodos de los antepasados
+// incluido el nodo actual
+
+// contiene el costo menos prometedor
+
+// contiene número de trabajador
+
+// contiene ID de trabajo
+
+// la matriz booleana asignada contendrá
+// info sobre trabajos disponibles
+
+NODE NEW NODE
+
+// Función para asignar un nuevo nodo de árbol de búsqueda
+// Aquí, la persona X está asignada al trabajo y
+
+CALCULATE COST
+
+// Función para calcular el costo menos prometedor.
+// del nodo después de que el trabajador x está asignado al trabajo y.
+
+COMP
+
+// Objeto de comparación que se utilizará para ordenar el montón
+
+FIND MIN COST
+
+// encuentra un costo mínimo utilizando RAMIFICACION Y PODA

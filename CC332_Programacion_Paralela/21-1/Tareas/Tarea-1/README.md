@@ -1,0 +1,1 @@
+Resolver ejercicios 1 y 2 de la clase U1.2

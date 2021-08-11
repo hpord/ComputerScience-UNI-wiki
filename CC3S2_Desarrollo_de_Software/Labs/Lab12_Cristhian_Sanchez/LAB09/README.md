@@ -1,0 +1,1 @@
+Instale los paquetes con `npm i` y luego lance el server con `npm start`

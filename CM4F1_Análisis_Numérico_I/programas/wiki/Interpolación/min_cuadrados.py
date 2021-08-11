@@ -52,4 +52,3 @@ ajuste_lineal(X, Y)
 
 
 
-

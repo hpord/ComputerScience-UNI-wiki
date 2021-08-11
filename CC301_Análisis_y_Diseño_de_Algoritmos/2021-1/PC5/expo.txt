@@ -1,0 +1,36 @@
+El problema de las ocho reinas es un pasatiempo que consiste en poner ocho reinas en el tablero de ajedrez sin que se amenacen.
+
+Obtener 8 requiere un poco más de trabajo. Según WikiPedia, solo hay 92 soluciones para este rompecabezas y una vez que eliminamos
+ los espejos y las rotaciones, solo hay 12 soluciones únicas. Hay 64 x 63 x 62 x 61 x 60 x 59 x 58 x 57 posibles ubicaciones para las reinas, 
+ asumiendo que no aplicamos alguna lógica para reducir el espacio de búsqueda. Es un número muy grande, por lo que claramente un método iterativo 
+ directo no es práctico. Este rompecabezas es como el proyecto de números ordenados en el sentido de que existen limitaciones en los genes, pero en 
+ lugar de una o dos limitaciones por gen, ahora tenemos muchas debido a las relaciones entre los genes de las que el motor no sabe nada.
+
+ El genotipo es la forma en que se codifican las partes del problema para que puedan ser manipuladas por el algoritmo genético y / o el motor.
+ Ejemplo: los genotipos potenciales para este proyecto incluyen:
+
+ • 64 bits, uno para cada uno de los 64 cuadrados del tablero
+ • 48 bits, 6 para cada una de las ubicaciones de reina, 
+ porque podemos contar hasta 64 con 6 bits
+ • 8 enteros en el rango 0..63 o 1..64
+ • 16 números enteros que representan la ubicación de las filas y 
+ columnas de cada reina
+
+ El fenotipo es cómo se utilizan los genes decodificados para resolver el problema.
+  En cada uno de los ejemplos anteriores, el fenotipo es la ubicación de 8 reinas en el tablero. 
+  Luego, la función de aptitud evalúa el fenotipo en el contexto del problema que se está resolviendo
+   para devolver un valor de aptitud al motor.
+
+BOARD 
+
+Usaremos los genes como índices de filas y columnas para trazar las ubicaciones de las reinas en un tablero.
+(IMAGEN)
+Podríamos haber introducido una clase de ubicación para convertir y encapsular pares de genes como ubicaciones de fila y columna, 
+pero como existe una correlación directa, no la necesitamos. Si hubiéramos elegido uno de los otros genotipos descritos anteriormente, 
+habría sido un paso importante.
+
+DISPLAY
+
+La función de visualización nos permitirá visualizar las ubicaciones de las reinas.
+
+

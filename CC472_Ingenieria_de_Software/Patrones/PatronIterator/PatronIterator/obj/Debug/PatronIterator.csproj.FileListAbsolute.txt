@@ -1,0 +1,10 @@
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator.csproj.AssemblyReference.cache
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator.Form1.resources
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator1.Properties.Resources.resources
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator.csproj.GenerateResource.cache
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator.csproj.CoreCompileInputs.cache
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\bin\Debug\PatronIterator1.exe.config
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\bin\Debug\PatronIterator1.exe
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\bin\Debug\PatronIterator1.pdb
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator1.exe
+C:\Users\love_\OneDrive\Documents\UNI-2021-I\Ingenieria_de_Sofware\Laboratorios\Lab-LuegoDePArcial\PatronIterator1\PatronIterator1\obj\Debug\PatronIterator1.pdb

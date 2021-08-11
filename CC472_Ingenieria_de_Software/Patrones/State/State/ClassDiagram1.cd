@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="State.State">
+    <Position X="6.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAQAAAQAAAAAAAAAAAAIAAAIAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>StatePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State.Puerta">
+    <Position X="2.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAQAAAQAAAAAAAAAQAAIAAAIAAAAAEAAAARAAAAAA=</HashCode>
+      <FileName>StatePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State.Abierto" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQAAAAAAAAAAAAIAAAIAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>StatePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State.Cerrado" Collapsed="true">
+    <Position X="11.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQAAAAAAAAAAAAIAAAIAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>StatePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State.Armada" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQAAAAAAAAAAAAIAAAIAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>StatePattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

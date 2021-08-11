@@ -1,0 +1,10 @@
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\bin\Debug\DecoratorAvion.exe.config
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\bin\Debug\DecoratorAvion.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\bin\Debug\DecoratorAvion.pdb
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.csproj.AssemblyReference.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.Form1.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.Properties.Resources.resources
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.csproj.GenerateResource.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.csproj.CoreCompileInputs.cache
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.exe
+C:\Users\andr33wD\Desktop\Ingenieria de Software\Ingenieria-de-Software\DecoratorAvion\DecoratorAvion\obj\Debug\DecoratorAvion.pdb

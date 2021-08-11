@@ -1,0 +1,51 @@
+En ciencia de la computación, el algoritmo hill climbing, 
+también llamado Algoritmo de Escalada Simple o Ascenso de colinas 
+es una técnica de optimización matemática que pertenece 
+a la familia de los algoritmos de búsqueda local. 
+
+Es un algoritmo iterativo que comienza con una solución arbitraria a 
+un problema, luego intenta encontrar una mejor solución variando 
+incrementalmente un único elemento de la solución. 
+Si el cambio produce una mejor solución, se repite este proceso 
+hasta que no se puedan encontrar mejoras. 
+
+Suele llamarse a esta búsqueda algoritmo voraz local, 
+porque toma un estado vecino "bueno" sin pensar en la próxima acción.
+
+El Algoritmo Hill climbing es interesante para encontrar un 
+óptimo local pero no garantiza encontrar la 
+mejor solución posible  de todas las posibles 
+soluciones. 
+
+La característica de que sólo el óptimo local puede ser garantizado 
+puede ser remediada utilizando reinicios (búsqueda local repetida), 
+o esquemas más complejos basados en iteraciones, 
+como búsqueda local iterada, en memoria, 
+como optimización de búsqueda reactiva y búsqueda tabú, 
+o modificaciones estocásticas, como simulated annealing.
+
+La relativa simplicidad de este algoritmo lo hace una 
+primera elección popular entre los algoritmos de optimización. 
+Es usado ampliamente en inteligencia artificial, 
+para alcanzar un estado final desde un nodo de inicio. 
+La elección del próximo nodo y del nodo de inicio puede ser 
+variada para obtener una lista de algoritmos de la misma familia.
+
+
+El hill climbing con frecuencia puede producir un mejor 
+resultado que otros algoritmos cuando la cantidad de tiempo 
+disponible para realizar la búsqueda es limitada, 
+por ejemplo en sistemas en tiempo real. 
+
+El algoritmo puede devolver una solución válida aún si es 
+interrumpido en cualquier momento antes de que finalice.
+
+Por ejemplo, el hill climbing puede ser aplicado 
+al problema del viajante. Es fácil encontrar una solución 
+inicial que visite todas las ciudades pero sería muy pobre 
+comparada con la solución óptima. 
+El algoritmo comienza con dicha solución y realiza 
+pequeñas mejoras a esta, tales como intercambiar el 
+orden en el cual dos ciudades son visitadas. 
+
+Eventualmente, es probable que se obtenga una ruta más corta.
